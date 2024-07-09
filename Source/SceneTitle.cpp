@@ -5,6 +5,8 @@
 #include "Input/Input.h"
 #include "SceneLoading.h"
 
+// test
+
 //‰Šú‰»
 void SceneTitle::Initialize()
 {
