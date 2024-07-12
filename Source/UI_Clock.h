@@ -21,8 +21,6 @@ public:
 	//•`‰æˆ—
 	void Render() override;
 
-	//void RenderClock();
-
 private:
 	Sprite* spr_hands = nullptr;
 	Sprite* spr_base = nullptr;
