@@ -210,6 +210,8 @@ void SceneGame::Render()
 			//‰æ–Ê‚É”–‚¢Ô‚ğo‚·
 			aka->Render(dc, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 1, 0, 0, 1);
 		}
+
+		UIManager::Instance().Render();
 	}
 
 

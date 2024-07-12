@@ -65,10 +65,6 @@ void DisItems::Render()
 	Graphics& graphics = Graphics::Instance();
 	ID3D11DeviceContext* dc = graphics.GetDeviceContext();
 
-	// 描画処理
-	RenderContext rc;
-	rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f };	// ライト方向（下方向）
-
 	//2Dスプライト描画
 	{
 		//下の四角
@@ -87,8 +83,8 @@ void DisItems::Render()
 			positionX, positionY,
 			Width, Height,
 			0, 0,
-			static_cast<float>(spr->GetTextureWidth()),
-			static_cast<float>(spr->GetTextureHeight()),
+			static_cast<float>(spr_flame->GetTextureWidth()),
+			static_cast<float>(spr_flame->GetTextureHeight()),
 			0,
 			1, 1, 1, 1
 		);
@@ -98,8 +94,8 @@ void DisItems::Render()
 			positionX, positionY,
 			Width, Height,
 			0, 0,
-			static_cast<float>(spr->GetTextureWidth()),
-			static_cast<float>(spr->GetTextureHeight()),
+			static_cast<float>(spr_obj->GetTextureWidth()),
+			static_cast<float>(spr_obj->GetTextureHeight()),
 			0,
 			1, 1, 0, 1
 		);
