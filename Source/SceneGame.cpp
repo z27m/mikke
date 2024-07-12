@@ -10,6 +10,10 @@
 #include "StageMoveFloor.h"
 #include "StageFind.h"
 
+//UI関係ヘッダー
+#include "UIManager.h"
+#include "UI_Clock.h"
+#include "UI_DisItems.h"
 
 
 // 初期化
@@ -70,6 +74,18 @@ void SceneGame::Initialize()
 
 	//ゲージスプライト
 	gauge = new Sprite();
+
+	//UI_Clock
+	UIManager& uiManager = UIManager::Instance();
+	Clock* clock = new Clock();
+	clock->Initialize();
+	uiManager.UIRegister(clock);
+
+	//UI_DisItems
+	DisItems* disItems = new DisItems();
+	disItems->Initialize();
+	uiManager.UIRegister(disItems);
+
 }
 
 // 終了化
@@ -96,6 +112,9 @@ void SceneGame::Finalize()
 		delete player;
 		player = nullptr;
 	}
+
+	//UI終了化
+	UIManager::Instance().Clear();
 }
 
 // 更新処理
@@ -115,9 +134,21 @@ void SceneGame::Update(float elapsedTime)
 	//プレイヤー更新処理
 	player->Update(elapsedTime);
 
+	//UI更新処理
+	UIManager::Instance().Update(elapsedTime);
 
 	//エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
+
+	if (isMissFlag == true)
+	{
+		totalTime += elapsedTime;
+		if (totalTime >= 0.2f)
+		{
+			isMissFlag = false;
+			totalTime = 0.0f;
+		}
+	}
 }
 
 // 描画処理
@@ -171,10 +202,17 @@ void SceneGame::Render()
 	// 2Dスプライト描画
 	{
 		/*RenderEnemyGauge(dc, rc.view, rc.projection);*/
+
+
+		if (isMissFlag == true)
+		{
+			
+			//画面に薄い赤を出す
+			aka->Render(dc, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 1, 0, 0, 1);
+		}
 	}
 
-	//タイマー描画
-	
+
 }
 
 
@@ -250,12 +288,14 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
  
 			if (hit.materialIndex == FindObjectType::None)
 			{
+				// ミスを押した
+				isMissFlag = true;
+
 				//不正解エフェクト再生
 				batu->Play(hit.position);
-				//画面を薄い赤にする
-				aka->Render(dc,0,0,1280,720,0,0,0,0,0,1,0,0,1);
+
 				//残り秒数を減らす
-				//game_timer--;
+				
 
 
 				int a;
