@@ -63,7 +63,8 @@ void SceneGame::Initialize()
 	//カメラコントローラー終了化
 	cameraController = new CameraController;
 
-	
+	//タイマー設定
+	//game_timer = 0;
 
 	//ゲージスプライト
 	gauge = new Sprite();
@@ -170,6 +171,8 @@ void SceneGame::Render()
 		/*RenderEnemyGauge(dc, rc.view, rc.projection);*/
 	}
 
+	//タイマー描画
+	
 }
 
 
@@ -246,12 +249,11 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 			if (hit.materialIndex == FindObjectType::None)
 			{
 				//不正解エフェクト再生
-				
 				batu->Play(hit.position);
 				//一瞬画面を揺らす　or　画面を薄い赤にする
 
 				//残り秒数を減らす
-
+				//game_timer--;
 
 
 				int a;

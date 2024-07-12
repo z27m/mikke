@@ -44,4 +44,5 @@ private:
 	Effect* maru = nullptr;
 	Effect* batu = nullptr;
 
+	//int game_timer = 0;
 };
