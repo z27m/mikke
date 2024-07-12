@@ -40,4 +40,8 @@ private:
 	CameraController* cameraController = nullptr;
 	Sprite* gauge = nullptr;
 	StageMain* stageMain;
+
+	Effect* maru = nullptr;
+	Effect* batu = nullptr;
+
 };
