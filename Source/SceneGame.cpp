@@ -37,8 +37,10 @@ void SceneGame::Initialize()
 	//stageManager.Register(stageFind);
 
 	//エフェクト読み込み
-	maru = new Effect("Data/Effect/seikai.efkefc");
-	batu = new Effect("Data/Effect/huseikai.efkefc");
+	maru = new Effect("Data/Effect/maru.efkefc");
+	batu = new Effect("Data/Effect/batu.efkefc");
+
+	aka = new Sprite("Data/Sprite/aka.png");
 
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
@@ -67,7 +69,8 @@ void SceneGame::Initialize()
 	//カメラコントローラー終了化
 	cameraController = new CameraController;
 
-	
+	//タイマー設定
+	//game_timer = 0;
 
 	//ゲージスプライト
 	gauge = new Sprite();
@@ -136,6 +139,16 @@ void SceneGame::Update(float elapsedTime)
 
 	//エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
+
+	if (isMissFlag == true)
+	{
+		totalTime += elapsedTime;
+		if (totalTime >= 0.2f)
+		{
+			isMissFlag = false;
+			totalTime = 0.0f;
+		}
+	}
 }
 
 // 描画処理
@@ -189,10 +202,17 @@ void SceneGame::Render()
 	// 2Dスプライト描画
 	{
 		/*RenderEnemyGauge(dc, rc.view, rc.projection);*/
+
+
+		if (isMissFlag == true)
+		{
+			
+			//画面に薄い赤を出す
+			aka->Render(dc, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 1, 0, 0, 1);
+		}
 	}
 
-	//UI描画
-	UIManager::Instance().Render();
+
 }
 
 
@@ -268,13 +288,14 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
  
 			if (hit.materialIndex == FindObjectType::None)
 			{
+				// ミスを押した
+				isMissFlag = true;
+
 				//不正解エフェクト再生
-				
 				batu->Play(hit.position);
-				//一瞬画面を揺らす　or　画面を薄い赤にする
 
 				//残り秒数を減らす
-
+				
 
 
 				int a;

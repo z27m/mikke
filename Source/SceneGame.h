@@ -44,4 +44,12 @@ private:
 	Effect* maru = nullptr;
 	Effect* batu = nullptr;
 
+	Sprite* aka = nullptr;
+
+	//int game_timer = 0;
+
+	// true...間違ったものをクリックした
+	bool isMissFlag = false;
+	// 間違ったものをクリックしたあとの赤背景が表示されている時間の経過時間の合計
+	float totalTime = 0.0f;
 };
