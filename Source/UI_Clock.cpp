@@ -5,18 +5,24 @@
 void Clock::Initialize()
 {
 	//スプライト初期化
-	spr = new Sprite("Data/Sprite/test_UI.png");
-
+	spr_base = new Sprite("Data/Sprite/UI_jiban.png");
+	spr_hands = new Sprite("Data/Sprite/UI_hands.png");
 }
 
 void Clock::Finalize()
 {
 	//スプライト終了化
-	if (spr != nullptr)
+	if (spr_base != nullptr)
 	{
-		delete spr;
-		spr = nullptr;
+		delete spr_base;
+		spr_base = nullptr;
 	}
+	if (spr_hands != nullptr)
+	{
+		delete spr_hands;
+		spr_hands = nullptr;
+	}
+
 }
 
 void Clock::Update(float elapsedTime)
@@ -41,13 +47,26 @@ void Clock::Render()
 
 	//2Dスプライト描画
 	{
-		//ここで表示位置を変える
-		spr->Render(dc,
+
+		//時計地盤描画
+		spr_base->Render(dc,
+			1050, 10,
+			Width,
+			Height,
+			0, 0,
+			static_cast<float>(spr_base->GetTextureWidth()),
+			static_cast<float>(spr_base->GetTextureHeight()),
+			0,
+			1, 1, 1, 1
+		);
+
+		//時計針描画
+		spr_hands->Render(dc,
 			positionX, positionY,
 			Width, Height,
 			0, 0,
-			static_cast<float>(spr->GetTextureWidth()),
-			static_cast<float>(spr->GetTextureHeight()),
+			static_cast<float>(spr_hands->GetTextureWidth()),
+			static_cast<float>(spr_hands->GetTextureHeight()),
 			angle,
 			1, 1, 1, 1
 		);

@@ -22,7 +22,13 @@ public:
 
 	//描画処理
 	void Render() override;
+
+	//UIの入力処理関数
+	void UIInput(float size,float elapsedTime);
 	
+	// 拡大開始の関数
+	void StartScaling(float t);
+
 	enum class SQUARE
 	{
 		NONE = -1,		//-1：消す
@@ -33,6 +39,8 @@ public:
 
 private:
 	Sprite* spr = nullptr;
+	Sprite* spr_flame = nullptr;
+	Sprite* spr_obj = nullptr;
 
 	SQUARE state = SQUARE::NORMAL;
 	float Width = 200;		//横表示サイズ(幅)
@@ -40,4 +48,19 @@ private:
 
 	float positionX = 5;	//表示位置
 	float positionY = 5;	
+
+	DirectX::XMFLOAT3		scale_velocity = { 0,0,0 };
+	DirectX::XMFLOAT3		position = { 0,0,0 };
+	DirectX::XMFLOAT3		angle = { 0,0,0 };
+	DirectX::XMFLOAT3		scale = { 1,1,1 };
+	//float size = 0;
+
+	// 縮小係数（現状重力にしている）
+	float gravity = -0.2f;
+
+	// true...ボタンが押された
+	bool isPushLeftButtonFlag = false;
+
+	// スケーリングの最低値
+	float minScaling = 1.0f;
 };
