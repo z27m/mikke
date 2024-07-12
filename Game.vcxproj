@@ -159,6 +159,10 @@
     <ClInclude Include="Source\StageMain.h" />
     <ClInclude Include="Source\StageManager.h" />
     <ClInclude Include="Source\StageMoveFloor.h" />
+    <ClInclude Include="Source\UI.h" />
+    <ClInclude Include="Source\UIManager.h" />
+    <ClInclude Include="Source\UI_Clock.h" />
+    <ClInclude Include="Source\UI_DisItems.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\DirectXTex\WICTextureLoader.cpp" />
@@ -207,6 +211,9 @@
     <ClCompile Include="Source\StageMain.cpp" />
     <ClCompile Include="Source\StageManager.cpp" />
     <ClCompile Include="Source\StageMoveFloor.cpp" />
+    <ClCompile Include="Source\UIManager.cpp" />
+    <ClCompile Include="Source\UI_Clock.cpp" />
+    <ClCompile Include="Source\UI_DisItems.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\Debug.hlsli" />

@@ -144,12 +144,6 @@
     <ClInclude Include="Source\ProjectileHoming.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EffectManager.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Effect.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -186,6 +180,20 @@
     <ClInclude Include="Source\StageFind.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="Source\UI.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI_Clock.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI_DisItems.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UIManager.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Effect.h" />
+    <ClInclude Include="Source\EffectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -287,12 +295,6 @@
     <ClCompile Include="Source\ProjectileHoming.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EffectManager.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Effect.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\SceneTitle.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -324,6 +326,21 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\StageFind.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI_Clock.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI_DisItems.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UIManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Effect.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EffectManager.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
