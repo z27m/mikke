@@ -10,6 +10,10 @@
 #include "StageMoveFloor.h"
 #include "StageFind.h"
 
+//UI関係ヘッダー
+#include "UIManager.h"
+#include "UI_Clock.h"
+#include "UI_DisItems.h"
 
 
 // 初期化
@@ -65,6 +69,18 @@ void SceneGame::Initialize()
 
 	//ゲージスプライト
 	gauge = new Sprite();
+
+	//UI_Clock
+	UIManager& uiManager = UIManager::Instance();
+	Clock* clock = new Clock();
+	clock->Initialize();
+	uiManager.UIRegister(clock);
+
+	//UI_DisItems
+	DisItems* disItems = new DisItems();
+	disItems->Initialize();
+	uiManager.UIRegister(disItems);
+
 }
 
 // 終了化
@@ -91,6 +107,9 @@ void SceneGame::Finalize()
 		delete player;
 		player = nullptr;
 	}
+
+	//UI終了化
+	UIManager::Instance().Clear();
 }
 
 // 更新処理
@@ -110,6 +129,8 @@ void SceneGame::Update(float elapsedTime)
 	//プレイヤー更新処理
 	player->Update(elapsedTime);
 
+	//UI更新処理
+	UIManager::Instance().Update(elapsedTime);
 
 	//エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
@@ -168,6 +189,8 @@ void SceneGame::Render()
 		/*RenderEnemyGauge(dc, rc.view, rc.projection);*/
 	}
 
+	//UI描画
+	UIManager::Instance().Render();
 }
 
 
