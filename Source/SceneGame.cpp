@@ -33,8 +33,10 @@ void SceneGame::Initialize()
 	//stageManager.Register(stageFind);
 
 	//エフェクト読み込み
-	maru = new Effect("Data/Effect/seikai.efkefc");
-	batu = new Effect("Data/Effect/huseikai.efkefc");
+	maru = new Effect("Data/Effect/maru.efkefc");
+	batu = new Effect("Data/Effect/batu.efkefc");
+
+	aka = new Sprite("Data/Sprite/aka.png");
 
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
@@ -250,8 +252,8 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 			{
 				//不正解エフェクト再生
 				batu->Play(hit.position);
-				//一瞬画面を揺らす　or　画面を薄い赤にする
-
+				//画面を薄い赤にする
+				aka->Render(dc,0,0,1280,720,0,0,0,0,0,1,0,0,1);
 				//残り秒数を減らす
 				//game_timer--;
 
