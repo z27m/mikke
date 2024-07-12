@@ -32,7 +32,9 @@ void SceneGame::Initialize()
 	//stageFind->SetPosition({ -10.0, 0, 0 });
 	//stageManager.Register(stageFind);
 
-
+	//エフェクト読み込み
+	maru = new Effect("Data/Effect/seikai.efkefc");
+	batu = new Effect("Data/Effect/huseikai.efkefc");
 
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
@@ -243,8 +245,9 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
  
 			if (hit.materialIndex == FindObjectType::None)
 			{
-				//不正解エフェクト（？）再生
-
+				//不正解エフェクト再生
+				
+				batu->Play(hit.position);
 				//一瞬画面を揺らす　or　画面を薄い赤にする
 
 				//残り秒数を減らす
@@ -257,8 +260,8 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
-				//デバッグ用）当たったら画面の色を変える　　　　　　　　　　正解エフェクト（？）再生
-
+				//正解エフェクト再生
+				maru->Play(hit.position);
 				//UIの削除
 
 				int a;
