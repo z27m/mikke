@@ -11,6 +11,9 @@ void DisItems::Initialize()
 	spr = new Sprite("Data/Sprite/test_UI.png");
 	spr_flame = new Sprite("Data/Sprite/test_UI.png");
 	spr_obj = new Sprite("Data/Sprite/test_UI.png");
+
+	objs[0].position = { 0, 0, 0 };
+	objs[1].position = { 100, 0, 0 };
 }
 
 void DisItems::Finalize()
@@ -37,27 +40,36 @@ void DisItems::Finalize()
 
 void DisItems::Update(float elapsedTime)
 {
-	// 縮小速度の計算
-	scale_velocity.y += gravity * elapsedTime * 60.0f;
-
-	// 縮小処理
-	scale.x += scale_velocity.x;
-	scale.y += scale_velocity.y;
-
-	// ボタンを押されていなかったら最小値を 1.0 にしておく
-	if (isPushLeftButtonFlag == false)
+	for (Object& obj : objs)
 	{
-		minScaling = 1.0f;
-	}
-	else
-	{
-		minScaling = 0.0f;
-	}
+		// 縮小速度の計算
+		obj.scale_velocity.y += gravity * elapsedTime * 60.0f;
 
-	if (scale.x < minScaling)
-		scale.x = minScaling;
-	if (scale.y < minScaling)
-		scale.y = minScaling;
+		// 縮小処理
+		obj.scale.x += obj.scale_velocity.x;
+		obj.scale.y += obj.scale_velocity.y;
+
+		// ボタンを押されていなかったら最小値を 1.0 にしておく
+		if (obj.isPlay == false)
+		{
+			minScaling = 1.0f;
+		}
+		else
+		{
+			minScaling = 0.0f;
+		}
+
+		if (obj.scale.x < minScaling)
+			obj.scale.x = minScaling;
+		if (obj.scale.y < minScaling)
+		{
+			obj.scale.y = minScaling;
+			if (obj.isPlay)
+			{
+				obj.exist = false;
+			}
+		}
+	}
 }
 
 void DisItems::Render()
@@ -65,71 +77,66 @@ void DisItems::Render()
 	Graphics& graphics = Graphics::Instance();
 	ID3D11DeviceContext* dc = graphics.GetDeviceContext();
 
-	//2Dスプライト描画
-	{
-		//下の四角
-		spr->Render(dc,
-			positionX, positionY,
-			Width, Height,
-			0, 0,
-			static_cast<float>(spr->GetTextureWidth()),
-			static_cast<float>(spr->GetTextureHeight()),
-			0,
-			1, 1, 1, 1
-		);
+	//下の四角
+	spr->Render(dc,
+		5, 5,
+		500, 100,
+		0, 0,
+		static_cast<float>(spr->GetTextureWidth()),
+		static_cast<float>(spr->GetTextureHeight()),
+		0,
+		0, 1, 1, 1
+	);
 
+	//2Dスプライト描画
+	for (Object& obj : objs)
+	{
 		//外枠
 		spr_flame->Render(dc,
-			positionX, positionY,
-			Width, Height,
+			obj.position.x + 10, obj.position.y + 15,
+			80 * obj.scale.x, 80 * obj.scale.y,
 			0, 0,
 			static_cast<float>(spr_flame->GetTextureWidth()),
 			static_cast<float>(spr_flame->GetTextureHeight()),
 			0,
-			1, 1, 1, 1
+			1, 0, 1, 1
 		);
 
 		//オブジェクト画像
-		spr_obj->Render(dc,
-			positionX, positionY,
-			Width, Height,
-			0, 0,
-			static_cast<float>(spr_obj->GetTextureWidth()),
-			static_cast<float>(spr_obj->GetTextureHeight()),
-			0,
-			1, 1, 0, 1
-		);
+		if (obj.exist)
+		{
+			spr_obj->Render(dc,
+				obj.position.x + 23, obj.position.y + 30,
+				50, 50,
+				100, 100,
+				static_cast<float>(spr_obj->GetTextureWidth()),
+				static_cast<float>(spr_obj->GetTextureHeight()),
+				0,
+				1, 1, 0, 1
+			);
+		}
 	}
 }
 
-void DisItems::UIInput(float size, float elapsedTime)
+void DisItems::Play(int index)
 {
-	Mouse& mouse = Input::Instance().GetMouse();
-	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
+	Object& obj = objs[index];
+
+//	Mouse& mouse = Input::Instance().GetMouse();
+//	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
 	{		
-		StartScaling(2.0f);
+		StartScaling(index, 2.0f);
 
-		isPushLeftButtonFlag = true;
-
-#if false
-		if (my > 0.0f)
-		{
-			position.y += my;
-			position.x += my;
-		}
-		else
-		{
-
-		}
-#endif
-
+		//isPushLeftButtonFlag = true;
+		obj.isPlay = true;
 	}
 }
 
 
 // 拡大開始の関数
-void DisItems::StartScaling(float t)
+void DisItems::StartScaling(int index, float t)
 {
-	scale_velocity.y = t;
+	objs[index].scale_velocity.x = t;
+	objs[index].scale_velocity.y = t;
 }
 

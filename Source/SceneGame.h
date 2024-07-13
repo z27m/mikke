@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "Graphics/Sprite.h"
 #include "stageMain.h"
+#include "UI_DisItems.h"
 
 // ゲームシーン
 class SceneGame:public Scene
@@ -45,7 +46,8 @@ private:
 	Effect* batu = nullptr;
 
 	Sprite* aka = nullptr;
-
+	
+	DisItems* disItems = nullptr;
 	//int game_timer = 0;
 
 	// true...間違ったものをクリックした
