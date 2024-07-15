@@ -14,6 +14,9 @@ void DisItems::Initialize()
 
 	objs[0].position = { 0, 0, 0 };
 	objs[1].position = { 100, 0, 0 };
+	objs[2].position = { 200, 0, 0 };
+	objs[3].position = { 300, 0, 0 };
+	objs[4].position = { 400, 0, 0 };
 }
 
 void DisItems::Finalize()
