@@ -8,7 +8,7 @@ class DisItems :public UI
 {
 public:
 	//DisItems() {};
-	DisItems() :state(SQUARE::NONE){};
+	DisItems() {};
 	~DisItems()override {};
 
 	//初期化
@@ -22,22 +22,37 @@ public:
 
 	//描画処理
 	void Render() override;
+
+	//アニメーション再生
+	void Play(int index);
+//	bool IsFinish() const { return isPushLeftButtonFlag && !isPlay; }
 	
-	enum class SQUARE
-	{
-		NONE = -1,		//-1：消す
-		NORMAL,			//0：通常
-		BIG,			//1：大きく
-		SMOLE,			//2：小さく
-	};
+	// 拡大開始の関数
+	void StartScaling(int index, float t);
 
 private:
 	Sprite* spr = nullptr;
+	Sprite* spr_flame = nullptr;
+	Sprite* spr_obj = nullptr;
 
-	SQUARE state = SQUARE::NORMAL;
-	float Width = 200;		//横表示サイズ(幅)
-	float Height = 50;		//縦表示サイズ(高さ)
+	struct Object
+	{
+		DirectX::XMFLOAT3		scale_velocity = { 0,0,0 };
+		DirectX::XMFLOAT3		position = { 0,0,0 };
+		DirectX::XMFLOAT3		angle = { 0,0,0 };
+		DirectX::XMFLOAT3		scale = { 0,0,0 };
+		bool	exist = true;
+		bool	isPlay = false;
+	};
+	Object		objs[5];
 
-	float positionX = 5;	//表示位置
-	float positionY = 5;	
+	// 縮小係数（現状重力にしている）
+	float gravity = -0.2f;
+
+	// スケーリングの最低値
+	float minScaling = 0.5f;
+
+	// true...ボタンが押された
+//	bool isPushLeftButtonFlag = false;
+//	bool isPlay = false;
 };

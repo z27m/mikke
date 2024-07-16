@@ -83,7 +83,7 @@ void SceneGame::Initialize()
 	uiManager.UIRegister(clock);
 
 	//UI_DisItems
-	DisItems* disItems = new DisItems();
+	disItems = new DisItems();
 	disItems->Initialize();
 	uiManager.UIRegister(disItems);
 
@@ -175,6 +175,17 @@ void SceneGame::Render()
 	rc.view = camera.GetView();
 	rc.projection = camera.GetProjection();
 
+#if 0
+	if (disItems != nullptr)
+	{
+		// UI削除演出が終わったのでUI削除
+		if (disItems->IsFinish())
+		{
+			UIManager::Instance().Remove(disItems);
+			disItems = nullptr;
+		}
+	}
+#endif
 	
 	// FindObject をクリックしたかどうかをチェック
 	CheckFindObject(dc, rc.view, rc.projection);
@@ -211,6 +222,8 @@ void SceneGame::Render()
 			//画面に薄い赤を出す
 			aka->Render(dc, 0, 0, 1280, 720, 0, 0, 0, 0, 0, 1, 0, 0, 1);
 		}
+
+		UIManager::Instance().Render();
 	}
 
 
@@ -296,7 +309,11 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				batu->Play(hit.position);
 
 				//残り秒数を減らす
-				
+				if (batu->Play(hit.position))
+				{
+					//Clock::Update()
+				}
+					
 
 
 				int a;
@@ -307,7 +324,12 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 			{
 				//正解エフェクト再生
 				maru->Play(hit.position);
-				//UIの削除
+
+				//UIの削除演出開始
+				if (disItems != nullptr)
+				{
+					disItems->Play(0);
+				}
 
 				int a;
 				a = 100;

@@ -21,18 +21,18 @@ public:
 	//描画処理
 	void Render() override;
 
-	//void RenderClock();
-
 private:
-	Sprite* spr = nullptr;
+	Sprite* spr_hands = nullptr;
+	Sprite* spr_base = nullptr;
 
-	const float ToRadian = 6.0f;
-	float angle = 90;
+	//const float ToRadian = 6.0f;
+	const float ToRadian = 30.0f;
+	float angle = 0;
 
-	float Width = 1100;		//横表示サイズ(幅)
-	float Height = 100;		//縦表示サイズ(高さ)
+	float Width = 200;		//横表示サイズ(幅)
+	float Height = 200;		//縦表示サイズ(高さ)
 
-	float positionX = 200;	//表示位置
-	float positionY = 50;
+	float positionX = 1050;	//表示位置
+	float positionY = 10;
 
 };
