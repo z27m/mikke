@@ -12,11 +12,11 @@ void DisItems::Initialize()
 	spr_flame = new Sprite("Data/Sprite/flame.png");
 	spr_obj = new Sprite("Data/Sprite/test_UI.png");
 
-	objs[0].position = { 40, 40, 0 };
-	objs[1].position = { 140,40, 0 };
-	objs[2].position = { 240,40, 0 };
-	objs[3].position = { 340,40, 0 };
-	objs[4].position = { 440,40, 0 };
+	objs[0].position = { 40 + 23, 40 + 5, 0 };
+	objs[1].position = { 140 + 23,40 + 5, 0 };
+	objs[2].position = { 240 + 23,40 + 5, 0 };
+	objs[3].position = { 340 + 23,40 + 5, 0 };
+	objs[4].position = { 440 + 23,40 + 5, 0 };
 }
 
 void DisItems::Finalize()
