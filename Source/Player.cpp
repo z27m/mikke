@@ -54,7 +54,7 @@ void Player::InputMove(float elapsedTime) {
 
 //•`‰æˆ—
 void Player::Render(ID3D11DeviceContext* dc, Shader* shader) {
-    shader->Draw(dc, model);
+    //shader->Draw(dc, model);
 
     
 }

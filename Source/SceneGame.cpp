@@ -31,6 +31,7 @@ void SceneGame::Initialize()
 	stageFind->SetPosition({ 0, 50.0, 0});
 	stageManager.Register(stageFind);
 
+	
 	//stageFind = new StageFind("Data/Model/team/cookie.mdl");
 	//stageFind->SetFindObjectType(FindObjectType::Find);
 	//stageFind->SetPosition({ -10.0, 0, 0 });
