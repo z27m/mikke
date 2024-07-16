@@ -5,8 +5,8 @@
 void Clock::Initialize()
 {
 	//スプライト初期化
-	spr_base = new Sprite("Data/Sprite/UI_jiban.png");
-	spr_hands = new Sprite("Data/Sprite/UI_hands.png");
+	spr_base = new Sprite("Data/Sprite/clock_base.png");
+	spr_hands = new Sprite("Data/Sprite/clock_hands.png");
 }
 
 void Clock::Finalize()
@@ -50,7 +50,7 @@ void Clock::Render()
 
 		//時計地盤描画
 		spr_base->Render(dc,
-			1050, 10,
+			positionX+10, positionY,
 			Width,
 			Height,
 			0, 0,
@@ -62,9 +62,9 @@ void Clock::Render()
 
 		//時計針描画
 		spr_hands->Render(dc,
-			positionX, positionY,
+			positionX+10, positionY+22,
 			Width, Height,
-			0, 0,
+			0, 150,
 			static_cast<float>(spr_hands->GetTextureWidth()),
 			static_cast<float>(spr_hands->GetTextureHeight()),
 			angle,

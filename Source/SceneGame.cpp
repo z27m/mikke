@@ -308,7 +308,11 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				batu->Play(hit.position);
 
 				//残り秒数を減らす
-				
+				if (batu->Play(hit.position))
+				{
+					//Clock::Update()
+				}
+					
 
 
 				int a;
@@ -323,7 +327,7 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				//UIの削除演出開始
 				if (disItems != nullptr)
 				{
-					disItems->Play(2);
+					disItems->Play(0);
 				}
 
 				int a;

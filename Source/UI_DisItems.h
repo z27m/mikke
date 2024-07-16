@@ -38,22 +38,21 @@ private:
 	struct Object
 	{
 		DirectX::XMFLOAT3		scale_velocity = { 0,0,0 };
-		DirectX::XMFLOAT3		position = { 50,50,50 };
+		DirectX::XMFLOAT3		position = { 0,0,0 };
 		DirectX::XMFLOAT3		angle = { 0,0,0 };
-		DirectX::XMFLOAT3		scale = { 1,1,1 };
+		DirectX::XMFLOAT3		scale = { 0,0,0 };
 		bool	exist = true;
 		bool	isPlay = false;
 	};
 	Object		objs[5];
 
-
 	// 縮小係数（現状重力にしている）
 	float gravity = -0.2f;
+
+	// スケーリングの最低値
+	float minScaling = 0.5f;
 
 	// true...ボタンが押された
 //	bool isPushLeftButtonFlag = false;
 //	bool isPlay = false;
-
-	// スケーリングの最低値
-	float minScaling = 1.0f;
 };
