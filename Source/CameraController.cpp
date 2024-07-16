@@ -34,8 +34,8 @@ void CameraController::Update(float elapsedTime) {
     if (range > 50) {
         range = 50;
     }
-    if (range < 10) {
-        range = 10;
+    if (range < 20) {
+        range = 20;
     }
 
     angle.x = 40.0f;
