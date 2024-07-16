@@ -38,7 +38,7 @@ private:
 	struct Object
 	{
 		DirectX::XMFLOAT3		scale_velocity = { 0,0,0 };
-		DirectX::XMFLOAT3		position = { 50,50,0 };
+		DirectX::XMFLOAT3		position = { 50,50,50 };
 		DirectX::XMFLOAT3		angle = { 0,0,0 };
 		DirectX::XMFLOAT3		scale = { 1,1,1 };
 		bool	exist = true;

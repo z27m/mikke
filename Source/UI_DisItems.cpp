@@ -125,12 +125,9 @@ void DisItems::Play(int index)
 {
 	Object& obj = objs[index];
 
-//	Mouse& mouse = Input::Instance().GetMouse();
-//	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
 	{		
 		StartScaling(index, 2.0f);
 
-		//isPushLeftButtonFlag = true;
 		obj.isPlay = true;
 	}
 }

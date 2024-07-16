@@ -323,7 +323,7 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				//UI‚Ìíœ‰‰oŠJŽn
 				if (disItems != nullptr)
 				{
-					disItems->Play(0);
+					disItems->Play(2);
 				}
 
 				int a;
