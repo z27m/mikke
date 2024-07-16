@@ -84,7 +84,7 @@ void DisItems::Render()
 	//‰º‚ÌŽlŠp
 	spr->Render(dc,
 		0, 0,
-		550, 100,
+		550, 120,
 		0, 0,
 		static_cast<float>(spr->GetTextureWidth()),
 		static_cast<float>(spr->GetTextureHeight()),
@@ -100,6 +100,7 @@ void DisItems::Render()
 		{
 			float sizeW = 80 * obj.scale.x;
 			float sizeH = 80 * obj.scale.y;
+
 			spr_flame->Render(dc,
 				obj.position.x + 10 - sizeW / 2, obj.position.y + 15 - sizeH / 2,
 				sizeW, sizeH,
@@ -141,7 +142,7 @@ void DisItems::Play(int index)
 	Object& obj = objs[index];
 
 	{		
-		StartScaling(index, 1.5f);
+		StartScaling(index, 2.0f);
 
 		obj.isPlay = true;
 	}
