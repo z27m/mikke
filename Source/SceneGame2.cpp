@@ -18,6 +18,7 @@
 #include "UIManager.h"
 #include "UI_Clock.h"
 #include "UI_DisItems.h"
+#include <Audio/Audio.h>
 
 
 //お菓子の家ステージ
@@ -48,6 +49,8 @@ void SceneGame2::Initialize()
 
 	aka = new Sprite("Data/Sprite/aka.png");
 
+	BGM_House = Audio::Instance().LoadAudioSource("Data/Audio/house2.wav");
+	BGM_House->Play(true);
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
 	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
@@ -121,6 +124,8 @@ void SceneGame2::Finalize()
 
 	//UI終了化
 	UIManager::Instance().Clear();
+
+	BGM_House->Stop();
 }
 
 // 更新処理

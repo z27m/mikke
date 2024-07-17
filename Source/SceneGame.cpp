@@ -49,8 +49,8 @@ void SceneGame::Initialize()
 
 	aka = new Sprite("Data/Sprite/aka.png");
 
-	
-
+	BGM_Sea = Audio::Instance().LoadAudioSource("Data/Audio/sea2.wav");
+	BGM_Sea->Play(true);
 
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
@@ -126,7 +126,7 @@ void SceneGame::Finalize()
 	//UII—¹‰»
 	UIManager::Instance().Clear();
 
-
+	BGM_Sea->Stop();
 }
 
 // XVˆ—
