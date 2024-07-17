@@ -1,6 +1,7 @@
 #include "Graphics/Graphics.h"
 #include "SceneTitle.h"
 #include "SceneGame.h"
+#include "SceneGame2.h"
 #include "SceneManager.h"
 #include "Input/Input.h"
 #include "SceneLoading.h"
@@ -13,9 +14,6 @@ void SceneTitle::Initialize()
    //スプライト初期化
     sprite = new Sprite("Data/Sprite/Title.png");
     
-    //SceneTitleのBGM開始
-    BGM_T = Audio::Instance().LoadAudioSource("Data/Audio/title.wav");
-    //BGM_T->Play(true);
 }
 
 //終了化
@@ -27,8 +25,7 @@ void SceneTitle::Finalize()
         sprite = nullptr;
     }
 
-    //SceneTitleのBGM終了
-    BGM_T->Stop();
+    
 
 }
 
@@ -48,7 +45,12 @@ void SceneTitle::Update(float elapsedTime)
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
     }
 
+
+    if (gamePad.GetButtonDown() & GamePad::BTN_LEFT) {
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame2));
+    }
 }
+
 
 //描画処理
 void SceneTitle::Render()

@@ -25,5 +25,5 @@ public:
 private:
     Sprite* sprite = nullptr;
 
-    std::unique_ptr<AudioSource>	BGM_T;
+ 
 };

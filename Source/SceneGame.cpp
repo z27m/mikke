@@ -9,6 +9,10 @@
 #include "StageMain.h"
 #include "StageMoveFloor.h"
 #include "StageFind.h"
+#include "SceneManager.h"
+#include "SceneResult.h"
+#include "SceneLoading.h"
+#include "Input/Input.h"
 
 //UI関係ヘッダー
 #include "UIManager.h"
@@ -43,9 +47,7 @@ void SceneGame::Initialize()
 
 	aka = new Sprite("Data/Sprite/aka.png");
 
-	//SceneGameのBGM終了
-	BGM_Sea = Audio::Instance().LoadAudioSource("Data/Audio/sea.wav");
-	//BGM_Sea->Play(true);
+	
 
 
 #if false
@@ -122,8 +124,7 @@ void SceneGame::Finalize()
 	//UI終了化
 	UIManager::Instance().Clear();
 
-	//SceneGameのBGM終了
-	BGM_Sea->Stop();
+
 }
 
 // 更新処理
@@ -159,6 +160,18 @@ void SceneGame::Update(float elapsedTime)
 		}
 	}
 
+
+	GamePad& gamePad = Input::Instance().GetGamePad();
+
+	const GamePadButton anyButton =
+		GamePad::BTN_A
+		| GamePad::BTN_B
+		| GamePad::BTN_X
+		| GamePad::BTN_Y;
+
+	if (gamePad.GetButtonDown() & anyButton) {
+		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
+	}
 
 }
 
