@@ -194,6 +194,15 @@
     </ClInclude>
     <ClInclude Include="Source\Effect.h" />
     <ClInclude Include="Source\EffectManager.h" />
+    <ClInclude Include="Source\SceneResult.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StageMain2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneGame2.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -341,6 +350,15 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\EffectManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneResult.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StageMain2.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneGame2.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

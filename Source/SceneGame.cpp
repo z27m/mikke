@@ -9,6 +9,10 @@
 #include "StageMain.h"
 #include "StageMoveFloor.h"
 #include "StageFind.h"
+#include "SceneManager.h"
+#include "SceneResult.h"
+#include "SceneLoading.h"
+#include "Input/Input.h"
 
 //UIä÷åWÉwÉbÉ_Å[
 #include "UIManager.h"
@@ -149,6 +153,18 @@ void SceneGame::Update(float elapsedTime)
 			isMissFlag = false;
 			totalTime = 0.0f;
 		}
+	}
+
+	GamePad& gamePad = Input::Instance().GetGamePad();
+
+	const GamePadButton anyButton =
+		GamePad::BTN_A
+		| GamePad::BTN_B
+		| GamePad::BTN_X
+		| GamePad::BTN_Y;
+
+	if (gamePad.GetButtonDown() & anyButton) {
+		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
 }
 
