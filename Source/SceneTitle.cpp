@@ -12,6 +12,10 @@ void SceneTitle::Initialize()
 {
    //スプライト初期化
     sprite = new Sprite("Data/Sprite/Title.png");
+    
+    //SceneTitleのBGM開始
+    BGM_T = Audio::Instance().LoadAudioSource("Data/Audio/title.wav");
+    //BGM_T->Play(true);
 }
 
 //終了化
@@ -22,6 +26,10 @@ void SceneTitle::Finalize()
         delete sprite;
         sprite = nullptr;
     }
+
+    //SceneTitleのBGM終了
+    BGM_T->Stop();
+
 }
 
 //更新処理
@@ -39,7 +47,6 @@ void SceneTitle::Update(float elapsedTime)
     if (gamePad.GetButtonDown() & anyButton) {
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
     }
-
 
 }
 
@@ -68,7 +75,5 @@ void SceneTitle::Render()
             screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
-            
-    
     }
 }

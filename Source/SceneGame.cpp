@@ -43,6 +43,11 @@ void SceneGame::Initialize()
 
 	aka = new Sprite("Data/Sprite/aka.png");
 
+	//SceneGameのBGM終了
+	BGM_Sea = Audio::Instance().LoadAudioSource("Data/Audio/sea.wav");
+	//BGM_Sea->Play(true);
+
+
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
 	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
@@ -116,6 +121,9 @@ void SceneGame::Finalize()
 
 	//UI終了化
 	UIManager::Instance().Clear();
+
+	//SceneGameのBGM終了
+	BGM_Sea->Stop();
 }
 
 // 更新処理
@@ -150,6 +158,8 @@ void SceneGame::Update(float elapsedTime)
 			totalTime = 0.0f;
 		}
 	}
+
+
 }
 
 // 描画処理

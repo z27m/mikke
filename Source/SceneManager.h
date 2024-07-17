@@ -30,5 +30,6 @@ public:
 private:
     Scene* currentScene = nullptr;
     Scene* nextScene = nullptr;
+    //std::unique_ptr<AudioSource>	BGM_T;
 
 };

@@ -2,6 +2,7 @@
 
 #include "Graphics/Sprite.h"
 #include "Scene.h"
+#include "Audio/Audio.h"
 
 //タイトルシーン
 class SceneTitle :public Scene {
@@ -23,4 +24,6 @@ public:
 
 private:
     Sprite* sprite = nullptr;
+
+    std::unique_ptr<AudioSource>	BGM_T;
 };
