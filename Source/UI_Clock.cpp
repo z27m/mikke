@@ -1,6 +1,7 @@
 #include "Graphics/Graphics.h"
 #include "UI.h"
 #include "UI_Clock.h"
+#include "SceneGame.h"
 
 void Clock::Initialize()
 {
@@ -28,6 +29,7 @@ void Clock::Finalize()
 void Clock::Update(float elapsedTime)
 {
 	float clockAngle = angle += ToRadian * elapsedTime;
+
 	if (clockAngle == 360)
 	{
 		//360‹‰ñ‚Á‚½‚Æ‚«‚Ìˆ—

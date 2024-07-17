@@ -21,6 +21,7 @@ public:
 	//•`‰æˆ—
 	void Render() override;
 
+
 private:
 	Sprite* spr_hands = nullptr;
 	Sprite* spr_base = nullptr;
@@ -34,5 +35,4 @@ private:
 
 	float positionX = 1050;	//•\¦ˆÊ’u
 	float positionY = 10;
-
 };

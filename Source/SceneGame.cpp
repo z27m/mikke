@@ -321,14 +321,11 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				//Žc‚è•b”‚ðŒ¸‚ç‚·
 				if (batu->Play(hit.position))
 				{
-					//Clock::Update()
+					
 				}
 					
-
-
 				int a;
 				a = 100;
-
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
