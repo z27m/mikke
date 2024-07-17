@@ -8,6 +8,9 @@
 #include "SceneTitle.h"
 #include "SceneManager.h"
 
+//オーディオ
+#include "Audio/Audio.h"
+
 
 
 // 垂直同期間隔設定
