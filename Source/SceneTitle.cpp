@@ -13,7 +13,10 @@ void SceneTitle::Initialize()
 {
    //スプライト初期化
     sprite = new Sprite("Data/Sprite/Title.png");
-    
+
+    //オーディオ初期化
+    BGM_Title = Audio::Instance().LoadAudioSource("Data/Audio/title2.wav");
+    BGM_Title->Play(true);
 }
 
 //終了化
@@ -24,9 +27,7 @@ void SceneTitle::Finalize()
         delete sprite;
         sprite = nullptr;
     }
-
-    
-
+    BGM_Title->Stop();
 }
 
 //更新処理
