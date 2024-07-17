@@ -20,6 +20,7 @@
 #include "UI_DisItems.h"
 
 
+//お菓子の家ステージ
 // 初期化
 void SceneGame2::Initialize()
 {

@@ -20,6 +20,8 @@
 #include "UI_DisItems.h"
 
 
+
+//海ステージ
 // 初期化
 void SceneGame::Initialize()
 {
