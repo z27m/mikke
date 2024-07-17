@@ -13,6 +13,7 @@ void SceneTitle::Initialize()
 {
    //スプライト初期化
     sprite = new Sprite("Data/Sprite/Title.png");
+    
 }
 
 //終了化
@@ -23,6 +24,9 @@ void SceneTitle::Finalize()
         delete sprite;
         sprite = nullptr;
     }
+
+    
+
 }
 
 //更新処理
@@ -41,12 +45,12 @@ void SceneTitle::Update(float elapsedTime)
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
     }
 
+
     if (gamePad.GetButtonDown() & GamePad::BTN_LEFT) {
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame2));
     }
-
-
 }
+
 
 //描画処理
 void SceneTitle::Render()
@@ -73,7 +77,5 @@ void SceneTitle::Render()
             screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
-            
-    
     }
 }

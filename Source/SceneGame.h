@@ -7,6 +7,7 @@
 #include "Graphics/Sprite.h"
 #include "stageMain.h"
 #include "UI_DisItems.h"
+#include "Audio/Audio.h"
 
 // ゲームシーン
 class SceneGame:public Scene
@@ -49,6 +50,8 @@ private:
 	
 	DisItems* disItems = nullptr;
 	//int game_timer = 0;
+
+	std::unique_ptr<AudioSource>	BGM_Sea;
 
 	// true...間違ったものをクリックした
 	bool isMissFlag = false;

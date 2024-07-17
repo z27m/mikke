@@ -8,9 +8,6 @@
 #include "SceneTitle.h"
 #include "SceneManager.h"
 
-//オーディオ
-#include "Audio/Audio.h"
-
 
 
 // 垂直同期間隔設定
@@ -27,6 +24,9 @@ Framework::Framework(HWND hWnd)
 
 	//シーン初期化
 	SceneManager::Instance().ChangeScene(new SceneTitle);
+
+	//オーディオデータ読み込み
+	//hitSE = Audio::Instance().LoadAudioSource("Data/Audio/SE.wav");
 }
 
 // デストラクタ
@@ -47,6 +47,12 @@ void Framework::Update(float elapsedTime/*Elapsed seconds from last frame*/)
 
 	// シーン更新処理
 	SceneManager::Instance().Update(elapsedTime);
+
+	//もしマウスの左クリックが押されたら再生
+	//if (input.GetMouse().GetButtonDown() & Mouse::BTN_LEFT)
+	//{
+	//	hitSE->Play(false);
+	//}
 }
 
 // 描画処理

@@ -47,6 +47,9 @@ void SceneGame::Initialize()
 
 	aka = new Sprite("Data/Sprite/aka.png");
 
+	
+
+
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
 	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
@@ -120,6 +123,8 @@ void SceneGame::Finalize()
 
 	//UII—¹‰»
 	UIManager::Instance().Clear();
+
+
 }
 
 // XVˆ—
@@ -155,6 +160,7 @@ void SceneGame::Update(float elapsedTime)
 		}
 	}
 
+
 	GamePad& gamePad = Input::Instance().GetGamePad();
 
 	const GamePadButton anyButton =
@@ -166,6 +172,7 @@ void SceneGame::Update(float elapsedTime)
 	if (gamePad.GetButtonDown() & anyButton) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
+
 }
 
 // •`‰æˆ—

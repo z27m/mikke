@@ -32,8 +32,6 @@ void Clock::Update(float elapsedTime)
 	{
 		//360‹‰ñ‚Á‚½‚Æ‚«‚Ìˆ—
 	}
-
-
 }
 
 void Clock::Render()
