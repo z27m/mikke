@@ -46,7 +46,6 @@ void SceneTitle::Update(float elapsedTime)
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
     }
 
-
     if (gamePad.GetButtonDown() & GamePad::BTN_LEFT) {
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame2));
     }
