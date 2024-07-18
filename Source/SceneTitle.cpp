@@ -84,17 +84,6 @@ void SceneTitle::Update(float elapsedTime)
     //}
 
 
-    /*const GamePadButton anyButton =
-        GamePad::BTN_A
-        | GamePad::BTN_B
-        | GamePad::BTN_X
-        | GamePad::BTN_Y;
-
-    if (gamePad.GetButtonDown() & anyButton) {
-        SE_select->Play(false);
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
-    }*/
-
 }
 
 
