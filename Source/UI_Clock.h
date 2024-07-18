@@ -22,12 +22,17 @@ public:
 	void Render() override;
 
 
+	void Miss(float amount)
+	{
+		angle += amount;
+	}
+
 private:
 	Sprite* spr_hands = nullptr;
 	Sprite* spr_base = nullptr;
 
-	const float ToRadian = 6.0f;
-	//const float ToRadian = 30.0f;
+	//const float ToRadian = 6.0f;
+	const float ToRadian = 30.0f;
 	float angle = 0;
 
 	float Width = 200;		//横表示サイズ(幅)

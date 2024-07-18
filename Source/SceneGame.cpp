@@ -87,7 +87,7 @@ void SceneGame::Initialize()
 
 	//UI_Clock
 	UIManager& uiManager = UIManager::Instance();
-	Clock* clock = new Clock();
+	clock = new Clock();
 	clock->Initialize();
 	uiManager.UIRegister(clock);
 
@@ -330,14 +330,11 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				// ミスを押した
 				isMissFlag = true;
 
+				//残り秒数を減らす(何度減らすか)
+				clock->Miss(30);
+
 				//不正解エフェクト再生
 				batu->Play(hit.position);
-
-				//残り秒数を減らす
-				if (batu->Play(hit.position))
-				{
-					
-				}
 					
 				int a;
 				a = 100;

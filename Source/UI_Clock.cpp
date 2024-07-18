@@ -30,9 +30,10 @@ void Clock::Update(float elapsedTime)
 {
 	float clockAngle = angle += ToRadian * elapsedTime;
 
-	if (clockAngle == 360)
+	if (clockAngle >= 360)
 	{
 		//360‹‰ñ‚Á‚½‚Æ‚«‚Ìˆ—
+		angle = 360;
 	}
 }
 

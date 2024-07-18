@@ -133,8 +133,6 @@ void DisItems::StartScaling(int index, float t)
 {
 	objs[index].scale_velocity.x = t;
 	objs[index].scale_velocity.y = t;
-	//objs[index].scale_velocity.x = t * 2.0f;
-	//objs[index].scale_velocity.y = t * 2.0f;
 }
 
 void DisItems::Play(int index)
@@ -142,7 +140,7 @@ void DisItems::Play(int index)
 	Object& obj = objs[index];
 
 	{		
-		StartScaling(index, 2.0f);
+		StartScaling(index, 1.5f);
 
 		obj.isPlay = true;
 	}

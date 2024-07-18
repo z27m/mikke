@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "Graphics/Sprite.h"
 #include "stageMain.h"
+#include "UI_Clock.h"
 #include "UI_DisItems.h"
 #include "Audio/Audio.h"
 
@@ -48,6 +49,7 @@ private:
 
 	Sprite* aka = nullptr;
 	
+	Clock* clock = nullptr;
 	DisItems* disItems = nullptr;
 	//int game_timer = 0;
 
