@@ -7,6 +7,7 @@
 #include "stageMain2.h"
 #include "UI_DisItems.h"
 #include <Audio/AudioSource.h>
+#include <vector>
 
 // ゲームシーン
 class SceneGame2 :public Scene
@@ -56,4 +57,10 @@ private:
 	bool isMissFlag = false;
 	// 間違ったものをクリックしたあとの赤背景が表示されている時間の経過時間の合計
 	float totalTime = 0.0f;
+
+	// チェックした StageFind のインデックスリスト
+	std::vector<int> m_checkList;
+
+	// チェックする数（これが必要数達したらクリア）
+	int checkCount = 0;
 };
