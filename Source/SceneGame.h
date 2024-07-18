@@ -61,6 +61,8 @@ private:
 	// 間違ったものをクリックしたあとの赤背景が表示されている時間の経過時間の合計
 	float totalTime = 0.0f;
 
+	int delItem = -1;
+
 //<<<<<<< Updated upstream
 	// チェックした StageFind のインデックスリスト
 	std::vector<int> m_checkList;
