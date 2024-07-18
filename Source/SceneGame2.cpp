@@ -20,6 +20,7 @@
 #include "UI_DisItems.h"
 #include <Audio/Audio.h>
 
+StageFind* stageFind2[4] = { 0 };
 
 //お菓子の家ステージ
 // 初期化
@@ -32,16 +33,12 @@ void SceneGame2::Initialize()
 	stageManager.Register(stageMain2);
 
 	// みつけだすステージの初期化
-	StageFind* stageFind = new StageFind("Data/Model/team/cookie.mdl");
-	stageFind->SetFindObjectType(FindObjectType::Find);
-	stageFind->SetPosition({ 0, 50.0, 0 });
-	stageManager.Register(stageFind);
+	stageFind2[0] = new StageFind("Data/Model/team/cookie.mdl");
+	stageFind2[0]->SetFindObjectType(FindObjectType::Find);
+	stageFind2[0]->SetPosition({ 0, -10.0, 0 });
+	stageFind2[0]->m_index = 0;
+	stageManager.Register(stageFind2[0]);
 
-
-	//stageFind = new StageFind("Data/Model/team/cookie.mdl");
-	//stageFind->SetFindObjectType(FindObjectType::Find);
-	//stageFind->SetPosition({ -10.0, 0, 0 });
-	//stageManager.Register(stageFind);
 
 	//エフェクト読み込み
 	maru = new Effect("Data/Effect/maru.efkefc");
@@ -161,15 +158,8 @@ void SceneGame2::Update(float elapsedTime)
 		}
 	}
 
-	GamePad& gamePad = Input::Instance().GetGamePad();
-
-	const GamePadButton anyButton =
-		GamePad::BTN_A
-		| GamePad::BTN_B
-		| GamePad::BTN_X
-		| GamePad::BTN_Y;
-
-	if (gamePad.GetButtonDown() & anyButton) {
+	
+	if (checkCount >= 1) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
 }
@@ -337,13 +327,14 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 				}
 
 
-
-				int a;
-				a = 100;
-
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
+				for (int index : m_checkList) {
+					if (index == hit.findIndex)
+						return;
+				}
+
 				//正解エフェクト再生
 				maru->Play(hit.position);
 
@@ -353,8 +344,9 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 					disItems->Play(0);
 				}
 
-				int a;
-				a = 100;
+				checkCount++;
+
+				m_checkList.push_back(hit.findIndex);
 			}
 
 			//敵を配置（敵を生成）

@@ -180,13 +180,7 @@ void SceneGame::Update(float elapsedTime)
 	}
 
 
-	/*GamePad& gamePad = Input::Instance().GetGamePad();
-
-	const GamePadButton anyButton =
-		GamePad::BTN_A
-		| GamePad::BTN_B
-		| GamePad::BTN_X
-		| GamePad::BTN_Y;*/
+	
 
 	if (checkCount>=2) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
