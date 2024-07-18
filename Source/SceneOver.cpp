@@ -34,7 +34,8 @@ void SceneOver::Update(float elapsedTime)
         GamePad::BTN_A
         | GamePad::BTN_B
         | GamePad::BTN_X
-        | GamePad::BTN_Y;
+        | GamePad::BTN_Y
+        | GamePad::BTN_START;
 
     if (gamePad.GetButtonDown() & anyButton) {
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));

@@ -17,12 +17,15 @@ void SceneSelect::Initialize()
     // 2D注意書き初期化
     sprite = new Sprite("Data/Sprite/Title.png");
 
+    sprite1 = new Sprite("Data/Sprite/sea3.png");
+    sprite2 = new Sprite("Data/Sprite/house.png");
+
     // Startスプライト初期化
     start = new Sprite("Data/Sprite/start.png");
 
-    // 3Dモデル初期化
-    model1 = new Model("Data/Model/Jammo/Jammo.mdl");
-    model2 = new Model("Data/Model/Mr.Incredible/Mr.Incredible.mdl");
+    //// 3Dモデル初期化
+    //model1 = new Model("Data/Model/Jammo/Jammo.mdl");
+    //model2 = new Model("Data/Model/Mr.Incredible/Mr.Incredible.mdl");
 
     // 四角のスプライト初期化
     button1 = new Sprite("Data/Sprite/migi.png");
@@ -59,9 +62,11 @@ void SceneSelect::Finalize()
 {
     // メモリ解放
     if (sprite) { delete sprite; sprite = nullptr; }
+    if (sprite1) { delete sprite1; sprite1 = nullptr; }
+    if (sprite2) { delete sprite2; sprite2 = nullptr; }
     if (start) { delete start; start = nullptr; }
-    if (model1) { delete model1; model1 = nullptr; }
-    if (model2) { delete model2; model2 = nullptr; }
+    //if (model1) { delete model1; model1 = nullptr; }
+    //if (model2) { delete model2; model2 = nullptr; }
     if (button1) { delete button1; button1 = nullptr; }
     if (button2) { delete button2; button2 = nullptr; }
     BGM_Select->Stop();
@@ -91,10 +96,10 @@ void SceneSelect::Update(float elapsedTime)
     }
 #endif
     //モデルアニメーション更新処理
-    model1->UpdateAnimation(elapsedTime);
+    //model1->UpdateAnimation(elapsedTime);
 
     //モデル行列更新
-    model1->UpdateTransform(transform);
+    //model1->UpdateTransform(transform);
 }
 
 // 描画処理
@@ -126,8 +131,9 @@ void SceneSelect::Render()
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
     }
-    else
+    else if (mode == Model3D_1)
     {
+#if false
         // スケール行列を作成
         DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
 
@@ -148,22 +154,55 @@ void SceneSelect::Render()
 
         currentModel->UpdateTransform(transform);
 
-        // 3Dモデル描画
-        RenderContext rc;
-        rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f }; // ライト方向（下方向）
-        Camera& camera = Camera::Instance();
-        rc.view = camera.GetView();
-        rc.projection = camera.GetProjection();
+#endif
 
-        Shader* shader = graphics.GetShader();
-        shader->Begin(dc, rc);
+        // 2Dスプライト描画
+        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+        float textureWidth = static_cast<float>(sprite->GetTextureWidth());
+        float textureHeight = static_cast<float>(sprite->GetTextureHeight());
 
-        if (currentModel)
+        // タイトルスプライト描画
+        sprite1->Render(dc,
+            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+            0, 0, textureWidth, textureHeight,
+            0, 1, 1, 1, 1);
+
+
+        // Startスプライト描画
+        if (start)
         {
-            shader->Draw(dc, currentModel);
-        }
+            float startWidth = static_cast<float>(start->GetTextureWidth());
+            float startHeight = static_cast<float>(start->GetTextureHeight());
+            float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+            float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
-        shader->End(dc);
+            float startX = screenWidth * 0.45f - 30;
+            float startY = screenHeight * 0.8f;
+            float startRenderWidth = startWidth * 0.1f + 100;
+            float startRenderHeight = startHeight * 0.1f + 20;
+
+            start->Render(dc,
+                startX, startY, startRenderWidth, startRenderHeight,
+                0, 0, startWidth, startHeight,
+                0, 1, 1, 1, 1);
+
+            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
+        }
+    }
+    else if (mode == Model3D_2)
+    {
+        // 2Dスプライト描画
+        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+        float textureWidth = static_cast<float>(sprite->GetTextureWidth());
+        float textureHeight = static_cast<float>(sprite->GetTextureHeight());
+
+        // タイトルスプライト描画
+        sprite2->Render(dc,
+            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+            0, 0, textureWidth, textureHeight,
+            0, 1, 1, 1, 1);
 
         // Startスプライト描画
         if (start)
@@ -226,13 +265,13 @@ void SceneSelect::HandleClick(int x, int y)
         {
         case Notice2D:
             mode = Model3D_1;
-            currentModel = model1;
-            model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
+            //currentModel = model1;
+            //model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
             //SE_select->Play(false);
             break;
         case Model3D_1:
             mode = Model3D_2;
-            currentModel = model2;
+            //currentModel = model2;
             //SE_select->Play(false);
             break;
         case Model3D_2:
@@ -249,7 +288,7 @@ void SceneSelect::HandleClick(int x, int y)
         {
         case Notice2D:
             mode = Model3D_2;
-            currentModel = model2;
+            //currentModel = model2;
             //SE_select->Play(false);
             break;
         case Model3D_1:
@@ -259,8 +298,8 @@ void SceneSelect::HandleClick(int x, int y)
             break;
         case Model3D_2:
             mode = Model3D_1;
-            currentModel = model1;
-            model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
+            //currentModel = model1;
+            //model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
             //SE_select->Play(false);
             break;
         }
