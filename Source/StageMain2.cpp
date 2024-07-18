@@ -8,7 +8,7 @@ StageMain2::StageMain2() {
 
     //ステージモデルを読み込み
     //model = new Model("Data/Model/ExampleStage/ExampleStage.mdl");
-    model = new Model("Data/Model/team/house.mdl");
+    model = new Model("Data/Model/team/house_new.mdl");
     scale.x = scale.y = scale.z = 0.2f;
 }
 

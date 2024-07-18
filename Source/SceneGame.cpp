@@ -19,7 +19,7 @@
 #include "UI_Clock.h"
 #include "UI_DisItems.h"
 
-StageFind* stageFind[4] = { 0 };
+StageFind* stageFind[5] = { 0 };
 
 
 //海ステージ
@@ -33,32 +33,41 @@ void SceneGame::Initialize()
 	stageManager.Register(stageMain);
 
 	// みつけだすステージの初期化
-	stageFind[0] = new StageFind("Data/Model/team/cookie.mdl");
+	stageFind[0] = new StageFind("Data/Model/team/hook.mdl"); //クロコダイル
 	stageFind[0]->SetFindObjectType(FindObjectType::Find);
-	stageFind[0]->SetPosition({ 0, 50.0, 0});
+	stageFind[0]->SetPosition({ -5.0, 30.5, -0.7});
 	stageFind[0]->m_index = 0;
 	stageManager.Register(stageFind[0]);
 
-	//stageFind[1] = new StageFind("Data/Model/team/cookie.mdl");
-	//stageFind[1]->SetFindObjectType(FindObjectType::Find);
-	//stageFind[1]->SetPosition({ 0.0, -10.0, 0 });
-	//stageManager.Register(stageFind[1]);
+	stageFind[1] = new StageFind("Data/Model/team/key.mdl"); //鍵
+	stageFind[1]->SetFindObjectType(FindObjectType::Find);
+	stageFind[1]->SetPosition({ -7.8, 27.7f, 9.8 });
+	stageFind[1]->m_index = 1;
+	stageManager.Register(stageFind[1]);
 
-	//stageFind[2] = new StageFind("Data/Model/team/cookie.mdl");
-	//stageFind[2]->SetFindObjectType(FindObjectType::Find);
-	//stageFind[2]->SetPosition({ 0, -20.0, 0 });
-	//stageManager.Register(stageFind[2]);
+	stageFind[2] = new StageFind("Data/Model/team/ring.mdl"); //指輪
+	stageFind[2]->SetFindObjectType(FindObjectType::Find);
+	stageFind[2]->SetPosition({ -4.1, 29.3, 0 });
+	stageFind[2]->m_index = 2;
+	stageManager.Register(stageFind[2]);
 
-	//stageFind[3] = new StageFind("Data/Model/team/cookie.mdl");
-	//stageFind[3]->SetFindObjectType(FindObjectType::Find);
-	//stageFind[3]->SetPosition({ 50.0, 50.0, 0 });
-	//stageManager.Register(stageFind[3]);
+	stageFind[3] = new StageFind("Data/Model/team/lock.mdl"); //南京錠
+	stageFind[3]->SetFindObjectType(FindObjectType::Find);
+	stageFind[3]->SetPosition({ -5.7f, 31.6f, -13.0f });
+	stageFind[3]->m_index = 3;
+	stageManager.Register(stageFind[3]);
 
-	stageFind[4] = new StageFind("Data/Model/team/cookie.mdl");
+	stageFind[4] = new StageFind("Data/Model/team/b.mdl"); //ビール
 	stageFind[4]->SetFindObjectType(FindObjectType::Find);
-	stageFind[4]->SetPosition({ -10.0, 0, 0 });
+	stageFind[4]->SetPosition({ 6.3f, 30.6f, 0 });
 	stageFind[4]->m_index = 4;
 	stageManager.Register(stageFind[4]);
+
+	stageFind[5] = new StageFind("Data/Model/team/book_new.mdl");  //本
+	stageFind[5]->SetFindObjectType(FindObjectType::Find);
+	stageFind[5]->SetPosition({ -5.5f, 31.6f, -13.4f });
+	stageFind[5]->m_index = 5;
+	stageManager.Register(stageFind[5]);
 
 	//エフェクト読み込み
 	maru = new Effect("Data/Effect/maru.efkefc");
@@ -182,7 +191,7 @@ void SceneGame::Update(float elapsedTime)
 
 	
 
-	if (checkCount>=2) {
+	if (checkCount>=6) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
 	
@@ -398,12 +407,6 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				m_checkList.push_back(hit.findIndex);
 			}
  
-			//敵を配置（敵を生成）
-			//EnemySlime* slime = new EnemySlime();
-			//敵の位置をレイがヒットした位置に設定
-			//slime->SetPosition(hit.position);
-			//敵管理に登録
-			//EnemyManager::Instance().Register(slime);
 		}
 	}
 

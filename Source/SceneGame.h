@@ -61,13 +61,13 @@ private:
 	// 間違ったものをクリックしたあとの赤背景が表示されている時間の経過時間の合計
 	float totalTime = 0.0f;
 
-//<<<<<<< Updated upstream
+
 	// チェックした StageFind のインデックスリスト
 	std::vector<int> m_checkList;
 
 	// チェックする数（これが必要数達したらクリア）
 	int checkCount = 0;
-//=======
+
 private:
 	enum DisItemNum
 	{
@@ -79,5 +79,9 @@ private:
 		Obj4,
 		Obj5
 	};
-//>>>>>>> Stashed changes
+
+//protected:
+//	DirectX::XMFLOAT3 scale = { 0,0,0 };
+
+
 };
