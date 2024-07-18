@@ -52,10 +52,12 @@ private:
     void HandleClick(int x, int y);
 public:
     Mode mode = Notice2D;
-    Model* model1 = nullptr;
-    Model* model2 = nullptr;
+   /* Model* model1 = nullptr;
+    Model* model2 = nullptr;*/
     Model* currentModel = nullptr;
     Sprite* sprite = nullptr;
+    Sprite* sprite1 = nullptr;
+    Sprite* sprite2 = nullptr;
     Sprite* start = nullptr;
     Sprite* button1 = nullptr;  // 四角のスプライト
     Sprite* button2 = nullptr;  // 四角のスプライト
