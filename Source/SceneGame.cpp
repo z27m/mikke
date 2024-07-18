@@ -67,6 +67,8 @@ void SceneGame::Initialize()
 	aka = new Sprite("Data/Sprite/aka.png");
 
 	BGM_Sea = Audio::Instance().LoadAudioSource("Data/Audio/sea2.wav");
+	SE_yes = Audio::Instance().LoadAudioSource("Data/Audio/yes.wav");
+	SE_not = Audio::Instance().LoadAudioSource("Data/Audio/not.wav");
 	BGM_Sea->Play(true);
 
 #if false
@@ -348,6 +350,8 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 
 				//不正解エフェクト再生
 				batu->Play(hit.position);
+
+				SE_not->Play(false);
 				
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
@@ -362,6 +366,7 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				//正解エフェクト再生
 				maru->Play(hit.position);
 
+				SE_yes->Play(false);
 
 				//UIの削除演出開始
 				delItem = hit.findIndex;

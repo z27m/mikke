@@ -52,6 +52,8 @@ private:
 	//int game_timer = 0;
 
 	std::unique_ptr<AudioSource>	BGM_House;
+	std::unique_ptr<AudioSource>	SE_yes;
+	std::unique_ptr<AudioSource>	SE_not;
 
 	// true...ŠÔˆá‚Á‚½‚à‚Ì‚ðƒNƒŠƒbƒN‚µ‚½
 	bool isMissFlag = false;
