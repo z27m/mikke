@@ -46,8 +46,8 @@ void DisItems::Update(float elapsedTime)
 	for (Object& obj : objs)
 	{
 		// èkè¨ë¨ìxÇÃåvéZ
-		obj.scale_velocity.x += gravity * elapsedTime * 60.0f;
-		obj.scale_velocity.y += gravity * elapsedTime * 60.0f;
+		obj.scale_velocity.x += gravity * elapsedTime * 100.0f;
+		obj.scale_velocity.y += gravity * elapsedTime * 100.0f;
 
 		// èkè¨èàóù
 		obj.scale.x += obj.scale_velocity.x * elapsedTime;
@@ -140,7 +140,7 @@ void DisItems::Play(int index)
 	Object& obj = objs[index];
 
 	{		
-		StartScaling(index, 1.5f);
+		StartScaling(index, 4.0f);
 
 		obj.isPlay = true;
 	}
