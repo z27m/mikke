@@ -9,19 +9,19 @@
 
 DisItems::LoadImage stage1Images[5] =
 {
-	{"Data/Sprite/ring.png", 100, 100},
-	{"Data/Sprite/beal.png", 50, 90},
-	{"Data/Sprite/lock.png", 50, 90},
-	{"Data/Sprite/key.png",  50, 90},
-	{"Data/Sprite/book.png", 50, 90},
+	{"Data/Sprite/hook.png", 100, 100},		//かぎづめ
+	{"Data/Sprite/key.png", 50, 90},		//鍵
+	{"Data/Sprite/lock.png", 30, 30},		//南京錠
+	{"Data/Sprite/beal.png",  50, 90},		//ビール
+	{"Data/Sprite/book.png", 50, 90},		//本
 };
 DisItems::LoadImage stage2Images[5] =
 {
-	{"Data/Sprite/ring.png", 50, 90},
-	{"Data/Sprite/beal.png", 50, 90},
-	{"Data/Sprite/lock.png", 50, 90},
-	{"Data/Sprite/key.png",  50, 90},
-	{"Data/Sprite/book.png", 50, 90},
+	{"Data/Sprite/bird.png", 90, 60},			//鳥
+	{"Data/Sprite/butterfly.png", 90, 60},		//蝶々
+	{"Data/Sprite/cookie.png", 90, 60},			//クッキー
+	{"Data/Sprite/karasu.png",  90, 60},		//カラス
+	{"Data/Sprite/tentoumushi.png", 90, 60},	//テントウムシ
 };
 
 DisItems::LoadImage* stageImages[2] =
