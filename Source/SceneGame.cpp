@@ -349,7 +349,7 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				isMissFlag = true;
 
 				//残り秒数を減らす(何度減らすか)
-				clock->Miss(30);
+				clock->Miss(10);
 
 				//不正解エフェクト再生
 				batu->Play(hit.position);
@@ -367,10 +367,36 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				maru->Play(hit.position);
 
 				//UIの削除演出開始
-				if (disItems != nullptr)
+				//if (disItems != nullptr)
+				//{
+				//	disItems->Play(0);
+				//}
+
+#if 1		//それぞれのアイテムのUI削除演出
+				switch (disItems != nullptr || FindObjectType::Find)
 				{
+				case DisItemNum::Obj0:
+
+
+					
+				case DisItemNum::Obj1:
 					disItems->Play(0);
+
+					break;
+				case DisItemNum::Obj2:
+					disItems->Play(1);
+
+					break;
+				case DisItemNum::Obj3:
+					disItems->Play(2);
+
+					break;
+				case DisItemNum::Obj4:
+					disItems->Play(3);
+
+					break;
 				}
+#endif // 0
 
 				checkCount++;
 
