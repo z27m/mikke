@@ -154,6 +154,7 @@
     <ClInclude Include="Source\SceneGame2.h" />
     <ClInclude Include="Source\SceneLoading.h" />
     <ClInclude Include="Source\SceneManager.h" />
+    <ClInclude Include="Source\SceneOver.h" />
     <ClInclude Include="Source\SceneResult.h" />
     <ClInclude Include="Source\SceneSelect.h" />
     <ClInclude Include="Source\SceneTitle.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Source\SceneGame2.cpp" />
     <ClCompile Include="Source\SceneLoading.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
+    <ClCompile Include="Source\SceneOver.cpp" />
     <ClCompile Include="Source\SceneResult.cpp" />
     <ClCompile Include="Source\SceneSelect.cpp" />
     <ClCompile Include="Source\SceneTitle.cpp" />

@@ -41,17 +41,17 @@ void SceneGame::Initialize()
 
 	//stageFind[1] = new StageFind("Data/Model/team/cookie.mdl");
 	//stageFind[1]->SetFindObjectType(FindObjectType::Find);
-	//stageFind[1]->SetPosition({ 0.0, 50.0, 0 });
+	//stageFind[1]->SetPosition({ 0.0, -10.0, 0 });
 	//stageManager.Register(stageFind[1]);
 
 	//stageFind[2] = new StageFind("Data/Model/team/cookie.mdl");
 	//stageFind[2]->SetFindObjectType(FindObjectType::Find);
-	//stageFind[2]->SetPosition({ 0, 70.0, 0 });
+	//stageFind[2]->SetPosition({ 0, -20.0, 0 });
 	//stageManager.Register(stageFind[2]);
 
 	//stageFind[3] = new StageFind("Data/Model/team/cookie.mdl");
 	//stageFind[3]->SetFindObjectType(FindObjectType::Find);
-	//stageFind[3]->SetPosition({ 30.0, 50.0, 0 });
+	//stageFind[3]->SetPosition({ 50.0, 50.0, 0 });
 	//stageManager.Register(stageFind[3]);
 
 	stageFind[4] = new StageFind("Data/Model/team/cookie.mdl");
@@ -185,6 +185,7 @@ void SceneGame::Update(float elapsedTime)
 	if (checkCount>=2) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
+	
 	
 
 }
