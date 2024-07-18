@@ -19,6 +19,7 @@
 #include "UI_Clock.h"
 #include "UI_DisItems.h"
 
+StageFind* stageFind[4] = { 0 };
 
 
 //海ステージ
@@ -32,16 +33,32 @@ void SceneGame::Initialize()
 	stageManager.Register(stageMain);
 
 	// みつけだすステージの初期化
-	StageFind* stageFind = new StageFind("Data/Model/team/cookie.mdl");
-	stageFind->SetFindObjectType(FindObjectType::Find);
-	stageFind->SetPosition({ 0, 50.0, 0});
-	stageManager.Register(stageFind);
+	stageFind[0] = new StageFind("Data/Model/team/cookie.mdl");
+	stageFind[0]->SetFindObjectType(FindObjectType::Find);
+	stageFind[0]->SetPosition({ 0, 50.0, 0});
+	stageFind[0]->m_index = 0;
+	stageManager.Register(stageFind[0]);
 
-	
-	//stageFind = new StageFind("Data/Model/team/cookie.mdl");
-	//stageFind->SetFindObjectType(FindObjectType::Find);
-	//stageFind->SetPosition({ -10.0, 0, 0 });
-	//stageManager.Register(stageFind);
+	//stageFind[1] = new StageFind("Data/Model/team/cookie.mdl");
+	//stageFind[1]->SetFindObjectType(FindObjectType::Find);
+	//stageFind[1]->SetPosition({ 0.0, 50.0, 0 });
+	//stageManager.Register(stageFind[1]);
+
+	//stageFind[2] = new StageFind("Data/Model/team/cookie.mdl");
+	//stageFind[2]->SetFindObjectType(FindObjectType::Find);
+	//stageFind[2]->SetPosition({ 0, 70.0, 0 });
+	//stageManager.Register(stageFind[2]);
+
+	//stageFind[3] = new StageFind("Data/Model/team/cookie.mdl");
+	//stageFind[3]->SetFindObjectType(FindObjectType::Find);
+	//stageFind[3]->SetPosition({ 30.0, 50.0, 0 });
+	//stageManager.Register(stageFind[3]);
+
+	stageFind[4] = new StageFind("Data/Model/team/cookie.mdl");
+	stageFind[4]->SetFindObjectType(FindObjectType::Find);
+	stageFind[4]->SetPosition({ -10.0, 0, 0 });
+	stageFind[4]->m_index = 4;
+	stageManager.Register(stageFind[4]);
 
 	//エフェクト読み込み
 	maru = new Effect("Data/Effect/maru.efkefc");
@@ -163,17 +180,18 @@ void SceneGame::Update(float elapsedTime)
 	}
 
 
-	GamePad& gamePad = Input::Instance().GetGamePad();
+	/*GamePad& gamePad = Input::Instance().GetGamePad();
 
 	const GamePadButton anyButton =
 		GamePad::BTN_A
 		| GamePad::BTN_B
 		| GamePad::BTN_X
-		| GamePad::BTN_Y;
+		| GamePad::BTN_Y;*/
 
-	if (gamePad.GetButtonDown() & anyButton) {
+	if (checkCount>=2) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
+	
 
 }
 
@@ -186,7 +204,7 @@ void SceneGame::Render()
 	ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 
 	// 画面クリア＆レンダーターゲット設定
-	FLOAT color[] = { 0.0f, 0.0f, 0.5f, 1.0f };	// RGBA(0.0～1.0)
+	FLOAT color[] = { 0.8f, 1.0f, 1.0f, 1.0f };	// RGBA(0.0～1.0)
 	dc->ClearRenderTargetView(rtv, color);
 	dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	dc->OMSetRenderTargets(1, &rtv, dsv);
@@ -335,12 +353,16 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 
 				//不正解エフェクト再生
 				batu->Play(hit.position);
-					
-				int a;
-				a = 100;
+				
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
+				for (int index : m_checkList) {
+					if (index == hit.findIndex)
+						return;
+				}
+
+
 				//正解エフェクト再生
 				maru->Play(hit.position);
 
@@ -350,8 +372,9 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 					disItems->Play(0);
 				}
 
-				int a;
-				a = 100;
+				checkCount++;
+
+				m_checkList.push_back(hit.findIndex);
 			}
  
 			//敵を配置（敵を生成）

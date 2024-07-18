@@ -61,6 +61,8 @@ bool StageFind::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3&
 
         hit.materialIndex = m_findObjectType;
 
+        hit.findIndex = m_index;
+
         return true;
     }
     return false;

@@ -212,7 +212,7 @@ void SceneSelect::Render()
     ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 
     // 画面クリア＆レンダーターゲット設定
-    FLOAT color[] = { 0.0f, 0.0f, 0.5f, 1.0f }; // RGBA(0.0～1.0)
+    FLOAT color[] = { 0.3f, 1.0f, 0.7f, 1.0f }; // RGBA(0.0～1.0)
     dc->ClearRenderTargetView(rtv, color);
     dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     dc->OMSetRenderTargets(1, &rtv, dsv);
@@ -347,6 +347,7 @@ void SceneSelect::HandleClick(int x, int y)
     }
     else if (PtInRect(&leftRect, { x, y }))
     {
+        
         switch (mode)
         {
         case Notice2D:
@@ -361,6 +362,7 @@ void SceneSelect::HandleClick(int x, int y)
             mode = Model3D_1;
             currentModel = model1;
             model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
+            
             break;
         }
     }

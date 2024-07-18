@@ -60,5 +60,9 @@ private:
 
     float radius = 0.5f;
 
+
+public:
+    // ”z—ñ‚Ì“Y‚¦š”Ô†
+    int m_index = -1;
 };
 
