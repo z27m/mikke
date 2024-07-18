@@ -21,7 +21,7 @@ void SceneSelect::Initialize()
     sprite2 = new Sprite("Data/Sprite/house.png");
 
     // Startスプライト初期化
-    start = new Sprite("Data/Sprite/start.png");
+    start = new Sprite("Data/Sprite/start1.png");
 
     //// 3Dモデル初期化
     //model1 = new Model("Data/Model/Jammo/Jammo.mdl");
