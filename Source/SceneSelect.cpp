@@ -239,7 +239,7 @@ void SceneSelect::Render()
 
     button1->Render(dc,
         rightButtonX, rightButtonY, buttonWidth, buttonHeight,
-        0, 0, buttonWidth, buttonHeight,
+        0, 0, 512, 512,
         0, 1, 1, 1, 1);
 
     // 左の四角
@@ -248,7 +248,7 @@ void SceneSelect::Render()
 
     button2->Render(dc,
         leftButtonX, leftButtonY, buttonWidth, buttonHeight,
-        0, 0, buttonWidth, buttonHeight,
+        0, 0, 512, 512,
         0, 1, 1, 1, 1);
 
     // クリック判定の位置とサイズを更新

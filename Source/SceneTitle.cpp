@@ -36,6 +36,7 @@ void SceneTitle::Update(float elapsedTime)
     GamePad& gamePad = Input::Instance().GetGamePad();
 
     //何かボタンを押したらローディングシーンへ切り替え
+<<<<<<< HEAD
     //const GamePadButton anyButton =
     //    GamePad::BTN_A
     //    | GamePad::BTN_B
@@ -83,6 +84,18 @@ void SceneTitle::Update(float elapsedTime)
     //    SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
     //}
 
+=======
+    const GamePadButton anyButton =
+        GamePad::BTN_A
+        | GamePad::BTN_B
+        | GamePad::BTN_X
+        | GamePad::BTN_Y;
+
+    if (gamePad.GetButtonDown() & anyButton) {
+        SE_select->Play(false);
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
+    }
+>>>>>>> 866d68f828d6c061e1c2ed4f14f9f1ef99c7b6e1
 }
 
 
