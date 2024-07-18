@@ -195,8 +195,8 @@ void SceneSelect::Render()
     float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
     // 右の四角
-    float rightButtonX = screenWidth - buttonWidth - 20.0f; // 画面右端から20ピクセル内側に配置
-    float rightButtonY = screenHeight - buttonHeight - 20.0f; // 画面下端から20ピクセル上に配置
+    float rightButtonX = screenWidth - buttonWidth - 120.0f; // 画面右端から20ピクセル内側に配置
+    float rightButtonY = screenHeight - buttonHeight - 320.0f; // 画面下端から20ピクセル上に配置
 
     button1->Render(dc,
         rightButtonX, rightButtonY, buttonWidth, buttonHeight,
@@ -204,8 +204,8 @@ void SceneSelect::Render()
         0, 1, 1, 1, 1);
 
     // 左の四角
-    float leftButtonX = 20.0f; // 画面左端から20ピクセル内側に配置
-    float leftButtonY = screenHeight - buttonHeight - 20.0f; // 画面下端から20ピクセル上に配置
+    float leftButtonX = 120.0f; // 画面左端から20ピクセル内側に配置
+    float leftButtonY = screenHeight - buttonHeight - 320.0f; // 画面下端から20ピクセル上に配置
 
     button2->Render(dc,
         leftButtonX, leftButtonY, buttonWidth, buttonHeight,
