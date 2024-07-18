@@ -91,6 +91,7 @@ void SceneGame2::Initialize()
 
 	//UI_DisItems
 	disItems = new DisItems();
+	disItems->stageNo = 1;
 	disItems->Initialize();
 	uiManager.UIRegister(disItems);
 

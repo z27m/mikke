@@ -5,18 +5,62 @@
 #include <Input/Input.h>
 #include <Input/Mouse.h>
 
+
+
+DisItems::LoadImage stage1Images[5] =
+{
+	{"Data/Sprite/ring.png", 50, 90},
+	{"Data/Sprite/beal.png", 50, 90},
+	{"Data/Sprite/lock.png", 50, 90},
+	{"Data/Sprite/key.png",  50, 90},
+	{"Data/Sprite/book.png", 50, 90},
+};
+DisItems::LoadImage stage2Images[5] =
+{
+	{"Data/Sprite/ring.png", 50, 90},
+	{"Data/Sprite/beal.png", 50, 90},
+	{"Data/Sprite/lock.png", 50, 90},
+	{"Data/Sprite/key.png",  50, 90},
+	{"Data/Sprite/book.png", 50, 90},
+};
+
+DisItems::LoadImage* stageImages[2] =
+{
+	stage1Images,
+	stage2Images
+};
+
+
 void DisItems::Initialize()
 {
 	//スプライト初期化
 	spr = new Sprite("Data/Sprite/spr.png");
 	spr_flame = new Sprite("Data/Sprite/flame.png");
-	spr_obj = new Sprite("Data/Sprite/test_UI.png");
+	//spr_obj = new Sprite("Data/Sprite/ring.png");
+	//spr_obj = new Sprite("Data/Sprite/beal.png");
+	//spr_obj = new Sprite("Data/Sprite/lock.png");
+	//spr_obj = new Sprite("Data/Sprite/key.png");
+	//spr_obj = new Sprite("Data/Sprite/book.png");
 
 	objs[0].position = { 40 + 23, 40 + 5, 0 };
 	objs[1].position = { 140 + 23,40 + 5, 0 };
 	objs[2].position = { 240 + 23,40 + 5, 0 };
 	objs[3].position = { 340 + 23,40 + 5, 0 };
 	objs[4].position = { 440 + 23,40 + 5, 0 };
+	//objs[0].spr_obj = new Sprite("Data/Sprite/ring.png");
+	//objs[1].spr_obj = new Sprite("Data/Sprite/beal.png");
+	//objs[2].spr_obj = new Sprite("Data/Sprite/lock.png");
+	//objs[3].spr_obj = new Sprite("Data/Sprite/key.png");
+	//objs[4].spr_obj = new Sprite("Data/Sprite/book.png");
+	//objs[4].tx = 50;
+	//objs[4].ty = 90;
+
+	for (int i=0; i<5; ++i)
+	{
+		objs[i].spr_obj = new Sprite(stageImages[stageNo][i].filename);
+		objs[i].tx = stageImages[stageNo][i].tx;
+		objs[i].ty = stageImages[stageNo][i].ty;
+	}
 }
 
 void DisItems::Finalize()
@@ -34,11 +78,12 @@ void DisItems::Finalize()
 		spr_flame = nullptr;
 	}
 	
-	if (spr_obj != nullptr)
-	{
-		delete spr_obj;
-		spr_obj = nullptr;
-	}
+	for (Object& obj : objs)
+		if (obj.spr_obj != nullptr)
+		{
+			delete obj.spr_obj;
+			obj.spr_obj = nullptr;
+		}
 }
 
 void DisItems::Update(float elapsedTime)
@@ -92,6 +137,7 @@ void DisItems::Render()
 		1, 1, 1, 1
 	);
 
+
 	//2Dスプライト描画
 	for (Object& obj : objs)
 	{
@@ -110,19 +156,20 @@ void DisItems::Render()
 				0,
 				1, 1, 1, 1
 			);
-			//オブジェクト画像
-			if (!obj.isPlay)
-			{
-				spr_obj->Render(dc,
-					obj.position.x-15, obj.position.y-8 ,
-					50, 50,
-					100, 100,
-					static_cast<float>(spr_obj->GetTextureWidth()),
-					static_cast<float>(spr_obj->GetTextureHeight()),
-					0,
-					0, 0, 0, 1
-				);
-			}
+
+		}
+		//オブジェクト画像
+		if (!obj.isPlay)
+		{
+			obj.spr_obj->Render(dc,
+				obj.position.x - 30, obj.position.y - 15,
+				100, 100,
+				obj.tx, obj.ty,
+				static_cast<float>(obj.spr_obj->GetTextureWidth()),
+				static_cast<float>(obj.spr_obj->GetTextureHeight()),
+				0,
+				1, 1, 1, 1
+			);
 		}
 
 	}
