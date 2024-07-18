@@ -33,33 +33,33 @@ void SceneGame2::Initialize()
 	stageManager.Register(stageMain2);
 
 	// みつけだすステージの初期化
-	stageFind2[0] = new StageFind("Data/Model/team/hook.mdl"); //クロコダイル
+	stageFind2[0] = new StageFind("Data/Model/team/midori.mdl"); //緑鳥
 	stageFind2[0]->SetFindObjectType(FindObjectType::Find);
-	stageFind2[0]->SetPosition({ -5.0, 30.5, -0.7 });
+	stageFind2[0]->SetPosition({ -15, 38.8, -1.1 });
 	stageFind2[0]->m_index = 0;
 	stageManager.Register(stageFind2[0]);
 
-	stageFind2[1] = new StageFind("Data/Model/team/key.mdl"); //鍵
+	stageFind2[1] = new StageFind("Data/Model/team/tyou.mdl"); //ちょうちょ
 	stageFind2[1]->SetFindObjectType(FindObjectType::Find);
-	stageFind2[1]->SetPosition({ -7.8, 27.7f, 9.8 });
+	stageFind2[1]->SetPosition({ 16, 30.7f,8 });
 	stageFind2[1]->m_index = 1;
 	stageManager.Register(stageFind2[1]);
 
-	stageFind2[2] = new StageFind("Data/Model/team/ring.mdl"); //指輪
+	stageFind2[2] = new StageFind("Data/Model/team/cookie.mdl"); //くっきー
 	stageFind2[2]->SetFindObjectType(FindObjectType::Find);
-	stageFind2[2]->SetPosition({ -4.1, 29.3, 0 });
+	stageFind2[2]->SetPosition({ -13.8, 38.3, -7.5 });
 	stageFind2[2]->m_index = 2;
 	stageManager.Register(stageFind2[2]);
 
-	stageFind2[3] = new StageFind("Data/Model/team/lock.mdl"); //南京錠
+	stageFind2[3] = new StageFind("Data/Model/team/gray.mdl"); //灰色の鳥
 	stageFind2[3]->SetFindObjectType(FindObjectType::Find);
-	stageFind2[3]->SetPosition({ -5.7f, 31.6f, -13.0f });
+	stageFind2[3]->SetPosition({ 9, 16.3f, 4.8 });
 	stageFind2[3]->m_index = 3;
 	stageManager.Register(stageFind2[3]);
 
-	stageFind2[4] = new StageFind("Data/Model/team/b.mdl"); //ビール
+	stageFind2[4] = new StageFind("Data/Model/team/ten.mdl"); //テントウムシ
 	stageFind2[4]->SetFindObjectType(FindObjectType::Find);
-	stageFind2[4]->SetPosition({ 6.3f, 30.6f, 0 });
+	stageFind2[4]->SetPosition({ 5, 40.6f, -13 });
 	stageFind2[4]->m_index = 4;
 	stageManager.Register(stageFind2[4]);
 
