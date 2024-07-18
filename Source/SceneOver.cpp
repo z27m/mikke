@@ -1,6 +1,6 @@
 #include "Graphics/Graphics.h"
-#include "SceneTitle.h"
-#include "SceneSelect.h"
+#include "SceneOver.h"
+#include "SceneGame.h"
 #include "SceneManager.h"
 #include "Input/Input.h"
 #include "SceneLoading.h"
@@ -8,30 +8,24 @@
 // test
 
 //初期化
-void SceneTitle::Initialize()
-{   
-   //スプライト初期化
-    sprite = new Sprite("Data/Sprite/Title.png");
-
-    //オーディオ初期化
-    BGM_Title = Audio::Instance().LoadAudioSource("Data/Audio/title2.wav");
-    SE_select = Audio::Instance().LoadAudioSource("Data/Audio/select.wav");
-    BGM_Title->Play(true);
+void SceneOver::Initialize()
+{
+    //スプライト初期化
+    sprite = new Sprite("Data/Sprite/aka.png");
 }
 
 //終了化
-void SceneTitle::Finalize()
+void SceneOver::Finalize()
 {
     //スプライト終了化
     if (sprite != nullptr) {
         delete sprite;
         sprite = nullptr;
     }
-    BGM_Title->Stop();
 }
 
 //更新処理
-void SceneTitle::Update(float elapsedTime)
+void SceneOver::Update(float elapsedTime)
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
 
@@ -43,14 +37,14 @@ void SceneTitle::Update(float elapsedTime)
         | GamePad::BTN_Y;
 
     if (gamePad.GetButtonDown() & anyButton) {
-        SE_select->Play(false);
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame));
     }
+
+
 }
 
-
 //描画処理
-void SceneTitle::Render()
+void SceneOver::Render()
 {
     Graphics& graphics = Graphics::Instance();
     ID3D11DeviceContext* dc = graphics.GetDeviceContext();
@@ -74,5 +68,7 @@ void SceneTitle::Render()
             screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
+
+
     }
 }

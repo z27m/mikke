@@ -66,6 +66,7 @@
     <ClCompile Include="Source\UI_Clock.cpp" />
     <ClCompile Include="Source\UI_DisItems.cpp" />
     <ClCompile Include="Source\SceneSelect.cpp" />
+    <ClCompile Include="Source\SceneOver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\DirectXTex\WICTextureLoader.h" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Source\UI_Clock.h" />
     <ClInclude Include="Source\UI_DisItems.h" />
     <ClInclude Include="Source\SceneSelect.h" />
+    <ClInclude Include="Source\SceneOver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\Debug.hlsli" />

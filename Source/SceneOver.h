@@ -2,13 +2,12 @@
 
 #include "Graphics/Sprite.h"
 #include "Scene.h"
-#include "Audio/Audio.h"
 
 //タイトルシーン
-class SceneTitle :public Scene {
+class SceneOver :public Scene {
 public:
-    SceneTitle() {}
-    ~SceneTitle() override {}
+    SceneOver() {}
+    ~SceneOver() override {}
 
     //初期化
     void Initialize() override;
@@ -24,7 +23,4 @@ public:
 
 private:
     Sprite* sprite = nullptr;
-
-    std::unique_ptr<AudioSource>	BGM_Title;
-    std::unique_ptr<AudioSource>	SE_select;
 };
