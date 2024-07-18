@@ -352,6 +352,7 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
+
 				for (int index : m_checkList) {
 					if (index == hit.findIndex)
 						return;
@@ -361,14 +362,21 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				//正解エフェクト再生
 				maru->Play(hit.position);
 
-				//UIの削除演出開始
-				//if (disItems != nullptr)
-				//{
-				//	disItems->Play(0);
-				//}
 
-#if 1		//それぞれのアイテムのUI削除演出
-				switch (disItems != nullptr || FindObjectType::Find)
+				//UIの削除演出開始
+				delItem = hit.findIndex;
+				if (disItems != nullptr)
+				{
+					disItems->Play(delItem);
+				}
+
+#if 0		//それぞれのアイテムのUI削除演出
+				//switch (disItems != nullptr || FindObjectType::Find)
+
+
+
+				int delItem = DisItemNum::Obj0;
+				switch (delItem)
 				{
 				case DisItemNum::Obj0:
 
