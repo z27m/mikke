@@ -36,6 +36,55 @@ void SceneTitle::Update(float elapsedTime)
     GamePad& gamePad = Input::Instance().GetGamePad();
 
     //何かボタンを押したらローディングシーンへ切り替え
+<<<<<<< HEAD
+    //const GamePadButton anyButton =
+    //    GamePad::BTN_A
+    //    | GamePad::BTN_B
+    //    | GamePad::BTN_X
+    //    | GamePad::BTN_Y
+    //    | GamePad::BTN_START;
+
+    //if (gamePad.GetButtonDown() & anyButton) {
+    //    SE_select->Play(false);
+    //    SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
+    //}
+
+
+    Mouse& mouse = Input::Instance().GetMouse();
+
+    // マウスクリックチェック
+    if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
+    {
+        SE_select->Play(false);
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
+    }
+
+
+
+
+    //GamePad& gamePad = Input::Instance().GetGamePad();
+
+    ////何かボタンを押したらローディングシーンへ切り替え
+    //const GamePadButton anyButton =
+    //    GamePad::BTN_A
+    //    | GamePad::BTN_B
+    //    | GamePad::BTN_X
+    //    | GamePad::BTN_Y;
+
+    //bool padPush = (gamePad.GetButtonDown() & anyButton);
+
+    //Mouse& mouse = Input::Instance().GetMouse();
+
+    //// マウスクリックチェック
+    //bool mousePush = (mouse.GetButtonDown() & Mouse::BTN_LEFT);
+
+    //if (padPush || mousePush)
+    //{
+    //    SE_select->Play(false);
+    //    SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
+    //}
+
+=======
     const GamePadButton anyButton =
         GamePad::BTN_A
         | GamePad::BTN_B
@@ -46,6 +95,7 @@ void SceneTitle::Update(float elapsedTime)
         SE_select->Play(false);
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect));
     }
+>>>>>>> 866d68f828d6c061e1c2ed4f14f9f1ef99c7b6e1
 }
 
 

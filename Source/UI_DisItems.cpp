@@ -9,7 +9,7 @@
 
 DisItems::LoadImage stage1Images[5] =
 {
-	{"Data/Sprite/ring.png", 50, 90},
+	{"Data/Sprite/ring.png", 100, 100},
 	{"Data/Sprite/beal.png", 50, 90},
 	{"Data/Sprite/lock.png", 50, 90},
 	{"Data/Sprite/key.png",  50, 90},
