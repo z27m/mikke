@@ -11,7 +11,7 @@
 void SceneTitle::Initialize()
 {   
    //スプライト初期化
-    sprite = new Sprite("Data/Sprite/Title.png");
+    sprite = new Sprite("Data/Sprite/title.png");
 
     //オーディオ初期化
     BGM_Title = Audio::Instance().LoadAudioSource("Data/Audio/title2.wav");
@@ -71,7 +71,7 @@ void SceneTitle::Render()
         float textureHeight = static_cast<float>(sprite->GetTextureHeight());
         //タイトルスプライト描画
         sprite->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+            0,0, screenWidth, screenHeight,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
     }

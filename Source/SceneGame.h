@@ -55,11 +55,16 @@ private:
 	//int game_timer = 0;
 
 	std::unique_ptr<AudioSource>	BGM_Sea;
+	std::unique_ptr<AudioSource>	SE_yes;
+	std::unique_ptr<AudioSource>	SE_not;
 
 	// true...間違ったものをクリックした
 	bool isMissFlag = false;
 	// 間違ったものをクリックしたあとの赤背景が表示されている時間の経過時間の合計
 	float totalTime = 0.0f;
+
+
+	int delItem = -1;
 
 
 	// チェックした StageFind のインデックスリスト
@@ -80,8 +85,8 @@ private:
 		Obj5
 	};
 
-//protected:
-//	DirectX::XMFLOAT3 scale = { 0,0,0 };
 
+protected:
+	DirectX::XMFLOAT3 scale = { 1,1,1 };
 
 };

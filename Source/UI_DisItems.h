@@ -7,6 +7,7 @@
 class DisItems :public UI
 {
 public:
+
 	//DisItems() {};
 	DisItems() {};
 	~DisItems()override {};
@@ -30,10 +31,24 @@ public:
 	// 拡大開始の関数
 	void StartScaling(int index, float t);
 
+
+	struct LoadImage
+	{
+		const char* filename;
+		float tx, ty;
+	};
+
+
+
+	int stageNo;
+
+
+
 private:
 	Sprite* spr = nullptr;
 	Sprite* spr_flame = nullptr;
-	Sprite* spr_obj = nullptr;
+	//Sprite* spr_obj = nullptr;
+
 
 	struct Object
 	{
@@ -43,8 +58,13 @@ private:
 		DirectX::XMFLOAT3		scale = { 0,0,0 };
 		bool	exist = true;
 		bool	isPlay = false;
+
+		Sprite* spr_obj = nullptr;
+		float tx, ty;
 	};
 	Object		objs[5];
+	
+
 
 	// 縮小係数（現状重力にしている）
 	float gravity = -0.2f;

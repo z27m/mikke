@@ -76,6 +76,8 @@ void SceneGame::Initialize()
 	aka = new Sprite("Data/Sprite/aka.png");
 
 	BGM_Sea = Audio::Instance().LoadAudioSource("Data/Audio/sea2.wav");
+	SE_yes = Audio::Instance().LoadAudioSource("Data/Audio/yes.wav");
+	SE_not = Audio::Instance().LoadAudioSource("Data/Audio/not.wav");
 	BGM_Sea->Play(true);
 
 #if false
@@ -119,6 +121,7 @@ void SceneGame::Initialize()
 
 	//UI_DisItems
 	disItems = new DisItems();
+	disItems->stageNo = 0;
 	disItems->Initialize();
 	uiManager.UIRegister(disItems);
 
@@ -357,10 +360,13 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 
 				//不正解エフェクト再生
 				batu->Play(hit.position);
+
+				SE_not->Play(false);
 				
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
+
 				for (int index : m_checkList) {
 					if (index == hit.findIndex)
 						return;
@@ -370,14 +376,22 @@ void SceneGame::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4
 				//正解エフェクト再生
 				maru->Play(hit.position);
 
-				//UIの削除演出開始
-				//if (disItems != nullptr)
-				//{
-				//	disItems->Play(0);
-				//}
+				SE_yes->Play(false);
 
-#if 1		//それぞれのアイテムのUI削除演出
-				switch (disItems != nullptr || FindObjectType::Find)
+				//UIの削除演出開始
+				delItem = hit.findIndex;
+				if (disItems != nullptr)
+				{
+					disItems->Play(delItem);
+				}
+
+#if 0		//それぞれのアイテムのUI削除演出
+				//switch (disItems != nullptr || FindObjectType::Find)
+
+
+
+				int delItem = DisItemNum::Obj0;
+				switch (delItem)
 				{
 				case DisItemNum::Obj0:
 

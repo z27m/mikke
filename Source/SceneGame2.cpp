@@ -33,11 +33,36 @@ void SceneGame2::Initialize()
 	stageManager.Register(stageMain2);
 
 	// みつけだすステージの初期化
-	stageFind2[0] = new StageFind("Data/Model/team/cookie.mdl");
+	stageFind2[0] = new StageFind("Data/Model/team/hook.mdl"); //クロコダイル
 	stageFind2[0]->SetFindObjectType(FindObjectType::Find);
-	stageFind2[0]->SetPosition({ 0, -10.0, 0 });
+	stageFind2[0]->SetPosition({ -5.0, 30.5, -0.7 });
 	stageFind2[0]->m_index = 0;
 	stageManager.Register(stageFind2[0]);
+
+	stageFind2[1] = new StageFind("Data/Model/team/key.mdl"); //鍵
+	stageFind2[1]->SetFindObjectType(FindObjectType::Find);
+	stageFind2[1]->SetPosition({ -7.8, 27.7f, 9.8 });
+	stageFind2[1]->m_index = 1;
+	stageManager.Register(stageFind2[1]);
+
+	stageFind2[2] = new StageFind("Data/Model/team/ring.mdl"); //指輪
+	stageFind2[2]->SetFindObjectType(FindObjectType::Find);
+	stageFind2[2]->SetPosition({ -4.1, 29.3, 0 });
+	stageFind2[2]->m_index = 2;
+	stageManager.Register(stageFind2[2]);
+
+	stageFind2[3] = new StageFind("Data/Model/team/lock.mdl"); //南京錠
+	stageFind2[3]->SetFindObjectType(FindObjectType::Find);
+	stageFind2[3]->SetPosition({ -5.7f, 31.6f, -13.0f });
+	stageFind2[3]->m_index = 3;
+	stageManager.Register(stageFind2[3]);
+
+	stageFind2[4] = new StageFind("Data/Model/team/b.mdl"); //ビール
+	stageFind2[4]->SetFindObjectType(FindObjectType::Find);
+	stageFind2[4]->SetPosition({ 6.3f, 30.6f, 0 });
+	stageFind2[4]->m_index = 4;
+	stageManager.Register(stageFind2[4]);
+
 
 
 	//エフェクト読み込み
@@ -47,6 +72,7 @@ void SceneGame2::Initialize()
 	aka = new Sprite("Data/Sprite/aka.png");
 
 	BGM_House = Audio::Instance().LoadAudioSource("Data/Audio/house2.wav");
+	
 	BGM_House->Play(true);
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
@@ -89,6 +115,7 @@ void SceneGame2::Initialize()
 
 	//UI_DisItems
 	disItems = new DisItems();
+	
 	disItems->Initialize();
 	uiManager.UIRegister(disItems);
 
@@ -326,6 +353,7 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 					//Clock::Update()
 				}
 
+	
 
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
@@ -337,6 +365,8 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 
 				//正解エフェクト再生
 				maru->Play(hit.position);
+
+			
 
 				//UIの削除演出開始
 				if (disItems != nullptr)

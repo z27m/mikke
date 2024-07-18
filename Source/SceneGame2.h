@@ -52,6 +52,8 @@ private:
 	//int game_timer = 0;
 
 	std::unique_ptr<AudioSource>	BGM_House;
+	std::unique_ptr<AudioSource>	SE_yes;
+	std::unique_ptr<AudioSource>	SE_not;
 
 	// true...間違ったものをクリックした
 	bool isMissFlag = false;
@@ -63,4 +65,6 @@ private:
 
 	// チェックする数（これが必要数達したらクリア）
 	int checkCount = 0;
+
+
 };
