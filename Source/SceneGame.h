@@ -63,13 +63,12 @@ private:
 
 	int delItem = -1;
 
-//<<<<<<< Updated upstream
 	// チェックした StageFind のインデックスリスト
 	std::vector<int> m_checkList;
 
 	// チェックする数（これが必要数達したらクリア）
 	int checkCount = 0;
-//=======
+
 private:
 	enum DisItemNum
 	{
@@ -81,5 +80,6 @@ private:
 		Obj4,
 		Obj5
 	};
-//>>>>>>> Stashed changes
+protected:
+	DirectX::XMFLOAT3 scale = { 1,1,1 };
 };

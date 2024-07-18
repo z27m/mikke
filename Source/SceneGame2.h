@@ -63,4 +63,7 @@ private:
 
 	// チェックする数（これが必要数達したらクリア）
 	int checkCount = 0;
+
+protected:
+	DirectX::XMFLOAT3 scale = { 1,1,1 };
 };
