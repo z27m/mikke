@@ -34,6 +34,22 @@ public:
 	// テクスチャ高さ取得
 	int GetTextureHeight() const { return textureHeight; }
 
+	// 他のメンバ関数や変数
+	bool HitTest(int x, int y)
+	{
+
+		return (x >= dx && x <= dx + dw &&
+			y >= dy && y <= dy + dh);
+	}
+
+	void SetPosition(float x, float y, float width, float height)
+	{
+		dx = x;
+		dy = y;
+		dw = width;
+		dh = height;
+	}
+
 private:
 	Microsoft::WRL::ComPtr<ID3D11VertexShader>			vertexShader;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader>			pixelShader;
@@ -50,4 +66,5 @@ private:
 
 	int textureWidth = 0;
 	int textureHeight = 0;
+	float dx, dy, dw, dh; // スプライトの位置とサイズを保存する変数
 };
