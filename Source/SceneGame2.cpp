@@ -186,7 +186,7 @@ void SceneGame2::Update(float elapsedTime)
 	}
 
 	
-	if (checkCount >= 1) {
+	if (checkCount >= 5) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
 }
