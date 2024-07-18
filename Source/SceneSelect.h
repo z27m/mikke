@@ -2,6 +2,7 @@
 
 #include "Scene.h"
 #include "Graphics/Sprite.h"
+#include "Audio/Audio.h"
 #include "Graphics/Model.h"
 #include <DirectXMath.h>
 
@@ -60,4 +61,7 @@ public:
     Sprite* button2 = nullptr;  // 四角のスプライト
     RECT leftRect;
     RECT rightRect;
+
+    std::unique_ptr<AudioSource>	BGM_Select;
+    std::unique_ptr<AudioSource>	SE_select;
 };

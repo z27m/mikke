@@ -47,6 +47,11 @@ void SceneSelect::Initialize()
         1000.0f
     );
     scale.x = scale.y = scale.z = 0.03f;
+
+    //オーディオ初期化
+    BGM_Select = Audio::Instance().LoadAudioSource("Data/Audio/title2.wav");
+    SE_select = Audio::Instance().LoadAudioSource("Data/Audio/select.wav");
+    BGM_Select->Play(true);
 }
 
 // 終了化
@@ -59,6 +64,7 @@ void SceneSelect::Finalize()
     if (model2) { delete model2; model2 = nullptr; }
     if (button1) { delete button1; button1 = nullptr; }
     if (button2) { delete button2; button2 = nullptr; }
+    BGM_Select->Stop();
 }
 
 // 更新処理
@@ -92,117 +98,6 @@ void SceneSelect::Update(float elapsedTime)
 }
 
 // 描画処理
-#if false
-void SceneSelect::Render()
-{
-    Graphics& graphics = Graphics::Instance();
-    ID3D11DeviceContext* dc = graphics.GetDeviceContext();
-    ID3D11RenderTargetView* rtv = graphics.GetRenderTargetView();
-    ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
-
-    // 画面クリア＆レンダーターゲット設定
-    FLOAT color[] = { 0.0f, 0.0f, 0.5f, 1.0f }; // RGBA(0.0～1.0)
-    dc->ClearRenderTargetView(rtv, color);
-    dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-    dc->OMSetRenderTargets(1, &rtv, dsv);
-
-    if (mode == Notice2D)
-    {
-        // 2Dスプライト描画
-        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-        float textureWidth = static_cast<float>(sprite->GetTextureWidth());
-        float textureHeight = static_cast<float>(sprite->GetTextureHeight());
-
-        // タイトルスプライト描画
-        sprite->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
-            0, 0, textureWidth, textureHeight,
-            0, 1, 1, 1, 1);
-    }
-    else
-    {
-        // スケール行列を作成
-        DirectX::XMMATRIX S = DirectX::XMMatrixScaling(scale.x, scale.y, scale.z);
-
-        // 回転行列を作成
-        DirectX::XMMATRIX X = DirectX::XMMatrixRotationX(angle.x);
-        DirectX::XMMATRIX Y = DirectX::XMMatrixRotationY(angle.y);
-        DirectX::XMMATRIX Z = DirectX::XMMatrixRotationZ(angle.z);
-        DirectX::XMMATRIX R = Z * X * Y;
-
-        // 位置行列を作成
-        DirectX::XMMATRIX T = DirectX::XMMatrixTranslation(position.x, position.y, position.z);
-
-        // 3つの行列を組み合わせ、ワールド行列を作成
-        DirectX::XMMATRIX W = S * R * T;
-
-        // 計算したワールド行列を取り出す
-        DirectX::XMStoreFloat4x4(&transform, W);
-
-        currentModel->UpdateTransform(transform);
-
-        // 3Dモデル描画
-        RenderContext rc;
-        rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f }; // ライト方向（下方向）
-        Camera& camera = Camera::Instance();
-        rc.view = camera.GetView();
-        rc.projection = camera.GetProjection();
-
-        Shader* shader = graphics.GetShader();
-        shader->Begin(dc, rc);
-
-        if (currentModel)
-        {
-            shader->Draw(dc, currentModel);
-        }
-
-        shader->End(dc);
-
-        // Startスプライト描画
-        if (start)
-        {
-            float startWidth = static_cast<float>(start->GetTextureWidth());
-            float startHeight = static_cast<float>(start->GetTextureHeight());
-            float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-            float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-            start->Render(dc,
-                screenWidth * 0.45f - 30, screenHeight * 0.8f, startWidth * 0.1f + 100, startHeight * 0.1f + 20,
-                0, 0, startWidth, startHeight,
-                0, 1, 1, 1, 1);
-        }
-    }
-
-    // 四角のスプライト描画
-    float buttonWidth = 50.0f;
-    float buttonHeight = 50.0f;
-
-    float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-    float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-
-    // 右の四角
-    float rightButtonX = screenWidth - buttonWidth - 20.0f; // 画面右端から20ピクセル内側に配置
-    float rightButtonY = screenHeight - buttonHeight - 20.0f; // 画面下端から20ピクセル上に配置
-
-    button1->Render(dc,
-        rightButtonX, rightButtonY, buttonWidth, buttonHeight,
-        0, 0, buttonWidth, buttonHeight,
-        0, 1, 1, 1, 1);
-
-    // 左の四角
-    float leftButtonX = 20.0f; // 画面左端から20ピクセル内側に配置
-    float leftButtonY = screenHeight - buttonHeight - 20.0f; // 画面下端から20ピクセル上に配置
-
-    button2->Render(dc,
-        leftButtonX, leftButtonY, buttonWidth, buttonHeight,
-        0, 0, buttonWidth, buttonHeight,
-        0, 1, 1, 1, 1);
-
-    // クリック判定の位置とサイズを更新
-    rightRect = { static_cast<LONG>(rightButtonX), static_cast<LONG>(rightButtonY), static_cast<LONG>(rightButtonX + buttonWidth), static_cast<LONG>(rightButtonY + buttonHeight) };
-    leftRect = { static_cast<LONG>(leftButtonX), static_cast<LONG>(leftButtonY), static_cast<LONG>(leftButtonX + buttonWidth), static_cast<LONG>(leftButtonY + buttonHeight) };
-}
-#endif
 
 void SceneSelect::Render()
 {
@@ -323,7 +218,6 @@ void SceneSelect::Render()
 }
 
 // クリック処理
-
 void SceneSelect::HandleClick(int x, int y)
 {
     if (PtInRect(&rightRect, { x, y }))
@@ -334,14 +228,17 @@ void SceneSelect::HandleClick(int x, int y)
             mode = Model3D_1;
             currentModel = model1;
             model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
+            //SE_select->Play(false);
             break;
         case Model3D_1:
             mode = Model3D_2;
             currentModel = model2;
+            //SE_select->Play(false);
             break;
         case Model3D_2:
             mode = Notice2D;
             currentModel = nullptr;
+            //SE_select->Play(false);
             break;
         }
     }
@@ -353,16 +250,18 @@ void SceneSelect::HandleClick(int x, int y)
         case Notice2D:
             mode = Model3D_2;
             currentModel = model2;
+            //SE_select->Play(false);
             break;
         case Model3D_1:
             mode = Notice2D;
             currentModel = nullptr;
+            //SE_select->Play(false);
             break;
         case Model3D_2:
             mode = Model3D_1;
             currentModel = model1;
             model1->PlayAnimation(3, false, 0.1f); // ここでアニメーションを開始
-            
+            //SE_select->Play(false);
             break;
         }
     }
@@ -371,6 +270,7 @@ void SceneSelect::HandleClick(int x, int y)
     {
         if (start->HitTest(x, y))
         {
+            SE_select->Play(false);
             SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
         }
     }
@@ -378,6 +278,7 @@ void SceneSelect::HandleClick(int x, int y)
     {
         if (start->HitTest(x, y))
         {
+            SE_select->Play(false);
             SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame2())); // SceneGame2が完成したら有効化
         }
     }

@@ -26,4 +26,5 @@ private:
     Sprite* sprite = nullptr;
 
     std::unique_ptr<AudioSource>	BGM_Title;
+    std::unique_ptr<AudioSource>	SE_select;
 };
