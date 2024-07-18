@@ -12,7 +12,7 @@
 #include "SceneManager.h"
 #include "SceneResult.h"
 #include "SceneLoading.h"
-#include "Input/Input.h"
+
 
 //UIŠÖŒWƒwƒbƒ_[
 #include "UIManager.h"

@@ -2,6 +2,9 @@
 #include "UI.h"
 #include "UI_Clock.h"
 #include "SceneGame.h"
+#include "SceneOver.h"
+#include "SceneManager.h"
+#include "SceneLoading.h"
 
 void Clock::Initialize()
 {
@@ -34,6 +37,8 @@ void Clock::Update(float elapsedTime)
 	{
 		//360‹‰ñ‚Á‚½‚Æ‚«‚Ìˆ—
 		angle = 360;
+
+		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneOver));
 	}
 }
 
