@@ -18,7 +18,7 @@ void SceneSelect::Initialize()
     sprite = new Sprite("Data/Sprite/Title.png");
 
     sprite1 = new Sprite("Data/Sprite/sea3.png");
-    sprite2 = new Sprite("Data/Sprite/Title.png");
+    sprite2 = new Sprite("Data/Sprite/house.png");
 
     // Startスプライト初期化
     start = new Sprite("Data/Sprite/start.png");

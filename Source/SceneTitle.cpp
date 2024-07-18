@@ -11,7 +11,7 @@
 void SceneTitle::Initialize()
 {   
    //スプライト初期化
-    sprite = new Sprite("Data/Sprite/Title.png");
+    sprite = new Sprite("Data/Sprite/title.png");
 
     //オーディオ初期化
     BGM_Title = Audio::Instance().LoadAudioSource("Data/Audio/title2.wav");
@@ -40,7 +40,8 @@ void SceneTitle::Update(float elapsedTime)
         GamePad::BTN_A
         | GamePad::BTN_B
         | GamePad::BTN_X
-        | GamePad::BTN_Y;
+        | GamePad::BTN_Y
+        | GamePad::BTN_START;
 
     if (gamePad.GetButtonDown() & anyButton) {
         SE_select->Play(false);
