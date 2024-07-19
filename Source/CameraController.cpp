@@ -31,8 +31,8 @@ void CameraController::Update(float elapsedTime) {
 
     range = range + -zDelta;
 
-    if (range > 50) {
-        range = 50;
+    if (range > 60) {
+        range = 60;
     }
     if (range < 20) {
         range = 20;
