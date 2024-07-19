@@ -15,7 +15,7 @@ void SceneSelect::Initialize()
     Graphics& graphics = Graphics::Instance();
 
     // 2D’ˆÓ‘‚«‰Šú‰»
-    sprite = new Sprite("Data/Sprite/Title.png");
+    sprite = new Sprite("Data/Sprite/tutorial.png");
 
     sprite1 = new Sprite("Data/Sprite/sea3.png");
     sprite2 = new Sprite("Data/Sprite/house.png");
