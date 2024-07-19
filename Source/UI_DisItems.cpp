@@ -11,9 +11,9 @@ DisItems::LoadImage stage1Images[5] =
 {
 	{"Data/Sprite/hook.png", 100, 100},		//かぎづめ
 	{"Data/Sprite/key.png", 50, 90},		//鍵
+	{"Data/Sprite/ring.png", 50, 90},		//本
 	{"Data/Sprite/lock.png", 30, 30},		//南京錠
 	{"Data/Sprite/beal.png",  50, 90},		//ビール
-	{"Data/Sprite/book.png", 50, 90},		//本
 };
 DisItems::LoadImage stage2Images[5] =
 {
