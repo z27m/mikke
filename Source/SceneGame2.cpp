@@ -12,17 +12,19 @@
 #include "SceneManager.h"
 #include "SceneResult.h"
 #include "SceneLoading.h"
-#include "Input/Input.h"
+
 
 //UI関係ヘッダー
 #include "UIManager.h"
 #include "UI_Clock.h"
 #include "UI_DisItems.h"
-#include <Audio/Audio.h>
+//#include <Audio/Audio.h>
+
 
 StageFind* stageFind2[4] = { 0 };
 
-//お菓子の家ステージ
+
+//家ステージ
 // 初期化
 void SceneGame2::Initialize()
 {
@@ -63,17 +65,25 @@ void SceneGame2::Initialize()
 	stageFind2[4]->m_index = 4;
 	stageManager.Register(stageFind2[4]);
 
-
+	//stageFind[5] = new StageFind("Data/Model/team/book_new.mdl");  //本
+	//stageFind[5]->SetFindObjectType(FindObjectType::Find);
+	//stageFind[5]->SetPosition({ -5.5f, 31.6f, -13.4f });
+	//stageFind[5]->m_index = 5;
+	//stageManager.Register(stageFind[5]);
 
 	//エフェクト読み込み
+	
 	maru = new Effect("Data/Effect/maru.efkefc");
 	batu = new Effect("Data/Effect/batu.efkefc");
 
 	aka = new Sprite("Data/Sprite/aka.png");
 
 	BGM_House = Audio::Instance().LoadAudioSource("Data/Audio/house2.wav");
-	
+	SE_yes = Audio::Instance().LoadAudioSource("Data/Audio/yes.wav");
+	SE_not = Audio::Instance().LoadAudioSource("Data/Audio/not.wav");
 	BGM_House->Play(true);
+
+
 #if false
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
 	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
@@ -109,13 +119,13 @@ void SceneGame2::Initialize()
 
 	//UI_Clock
 	UIManager& uiManager = UIManager::Instance();
-	Clock* clock = new Clock();
+	clock = new Clock();
 	clock->Initialize();
 	uiManager.UIRegister(clock);
 
 	//UI_DisItems
 	disItems = new DisItems();
-	
+	disItems->stageNo = 1;
 	disItems->Initialize();
 	uiManager.UIRegister(disItems);
 
@@ -185,10 +195,15 @@ void SceneGame2::Update(float elapsedTime)
 		}
 	}
 
-	
+
+
+
 	if (checkCount >= 5) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
+
+
+
 }
 
 // 描画処理
@@ -200,7 +215,7 @@ void SceneGame2::Render()
 	ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 
 	// 画面クリア＆レンダーターゲット設定
-	FLOAT color[] = { 1.0f, 0.8f, 1.0f, 1.0f };	// RGBA(0.0～1.0)
+	FLOAT color[] = { 0.8f, 1.0f, 1.0f, 1.0f };	// RGBA(0.0～1.0)
 	dc->ClearRenderTargetView(rtv, color);
 	dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	dc->OMSetRenderTargets(1, &rtv, dsv);
@@ -344,47 +359,72 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 				// ミスを押した
 				isMissFlag = true;
 
+				//残り秒数を減らす(何度減らすか)
+				clock->Miss(10);
+
 				//不正解エフェクト再生
 				batu->Play(hit.position);
 
-				//残り秒数を減らす
-				if (batu->Play(hit.position))
-				{
-					//Clock::Update()
-				}
-
-	
+				SE_not->Play(false);
 
 			}
 			else if (hit.materialIndex == FindObjectType::Find)
 			{
+
 				for (int index : m_checkList) {
 					if (index == hit.findIndex)
 						return;
 				}
 
+
 				//正解エフェクト再生
 				maru->Play(hit.position);
 
-			
+				SE_yes->Play(false);
 
 				//UIの削除演出開始
+				delItem = hit.findIndex;
 				if (disItems != nullptr)
 				{
-					disItems->Play(0);
+					disItems->Play(delItem);
 				}
+
+#if 0		//それぞれのアイテムのUI削除演出
+				//switch (disItems != nullptr || FindObjectType::Find)
+
+
+
+				int delItem = DisItemNum::Obj0;
+				switch (delItem)
+				{
+				case DisItemNum::Obj0:
+
+
+
+				case DisItemNum::Obj1:
+					disItems->Play(0);
+
+					break;
+				case DisItemNum::Obj2:
+					disItems->Play(1);
+
+					break;
+				case DisItemNum::Obj3:
+					disItems->Play(2);
+
+					break;
+				case DisItemNum::Obj4:
+					disItems->Play(3);
+
+					break;
+				}
+#endif // 0
 
 				checkCount++;
 
 				m_checkList.push_back(hit.findIndex);
 			}
 
-			//敵を配置（敵を生成）
-			//EnemySlime* slime = new EnemySlime();
-			//敵の位置をレイがヒットした位置に設定
-			//slime->SetPosition(hit.position);
-			//敵管理に登録
-			//EnemyManager::Instance().Register(slime);
 		}
 	}
 

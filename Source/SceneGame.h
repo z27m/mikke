@@ -86,7 +86,7 @@ private:
 	};
 
 
-protected:
-	DirectX::XMFLOAT3 scale = { 1,1,1 };
+//protected:
+//	DirectX::XMFLOAT3 scale = { 1,1,1 };
 
 };

@@ -22,6 +22,7 @@ DisItems::LoadImage stage2Images[5] =
 	{"Data/Sprite/cookie.png", 90, 60},			//クッキー
 	{"Data/Sprite/karasu.png",  90, 60},		//カラス
 	{"Data/Sprite/tentoumushi.png", 90, 60},	//テントウムシ
+	
 };
 
 DisItems::LoadImage* stageImages[2] =
