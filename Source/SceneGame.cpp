@@ -19,7 +19,7 @@
 #include "UI_Clock.h"
 #include "UI_DisItems.h"
 
-StageFind* stageFind[5] = { 0 };
+StageFind* stageFind[4] = { 0 };
 
 
 //海ステージ
@@ -63,11 +63,11 @@ void SceneGame::Initialize()
 	stageFind[4]->m_index = 4;
 	stageManager.Register(stageFind[4]);
 
-	stageFind[5] = new StageFind("Data/Model/team/book_new.mdl");  //本
-	stageFind[5]->SetFindObjectType(FindObjectType::Find);
-	stageFind[5]->SetPosition({ -5.5f, 31.6f, -13.4f });
-	stageFind[5]->m_index = 5;
-	stageManager.Register(stageFind[5]);
+	//stageFind[5] = new StageFind("Data/Model/team/book_new.mdl");  //本
+	//stageFind[5]->SetFindObjectType(FindObjectType::Find);
+	//stageFind[5]->SetPosition({ -5.5f, 31.6f, -13.4f });
+	//stageFind[5]->m_index = 5;
+	//stageManager.Register(stageFind[5]);
 
 	//エフェクト読み込み
 	maru = new Effect("Data/Effect/maru.efkefc");
@@ -194,7 +194,7 @@ void SceneGame::Update(float elapsedTime)
 
 	
 
-	if (checkCount>=6) {
+	if (checkCount>=5) {
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneResult));
 	}
 	
