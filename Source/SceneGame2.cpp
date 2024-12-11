@@ -72,6 +72,8 @@ void SceneGame2::Initialize()
 	aka = new Sprite("Data/Sprite/aka.png");
 
 	BGM_House = Audio::Instance().LoadAudioSource("Data/Audio/house2.wav");
+	SE_yes = Audio::Instance().LoadAudioSource("Data/Audio/yes.wav");
+	SE_not = Audio::Instance().LoadAudioSource("Data/Audio/not.wav");
 	
 	BGM_House->Play(true);
 #if false
@@ -344,14 +346,13 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 				// ミスを押した
 				isMissFlag = true;
 
+				//残り秒数を減らす(何度減らすか)
+				//clock->Miss(10);
+
 				//不正解エフェクト再生
 				batu->Play(hit.position);
 
-				//残り秒数を減らす
-				if (batu->Play(hit.position))
-				{
-					//Clock::Update()
-				}
+				SE_not->Play(false);
 
 	
 
@@ -365,8 +366,8 @@ void SceneGame2::CheckFindObject(ID3D11DeviceContext* dc, const DirectX::XMFLOAT
 
 				//正解エフェクト再生
 				maru->Play(hit.position);
-
 			
+				SE_yes->Play(false);
 
 				//UIの削除演出開始
 				if (disItems != nullptr)
