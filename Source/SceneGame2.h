@@ -6,7 +6,8 @@
 #include "Graphics/Sprite.h"
 #include "stageMain2.h"
 #include "UI_DisItems.h"
-#include <Audio/AudioSource.h>
+#include "UI_Clock.h"
+#include "Audio/Audio.h"
 #include <vector>
 
 // ゲームシーン
@@ -48,6 +49,8 @@ private:
 
 	Sprite* aka = nullptr;
 
+	Clock* clock = nullptr;
+
 	DisItems* disItems = nullptr;
 	//int game_timer = 0;
 
@@ -60,11 +63,27 @@ private:
 	// 間違ったものをクリックしたあとの赤背景が表示されている時間の経過時間の合計
 	float totalTime = 0.0f;
 
+	int delItem = -1;
+
 	// チェックした StageFind のインデックスリスト
 	std::vector<int> m_checkList;
 
 	// チェックする数（これが必要数達したらクリア）
 	int checkCount = 0;
+
+	
+
+private:
+	enum DisItemNum
+	{
+		ObjNone = -1,
+		Obj0,
+		Obj1,
+		Obj2,
+		Obj3,
+		Obj4,
+		Obj5
+	};
 
 
 };
