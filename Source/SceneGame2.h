@@ -6,7 +6,6 @@
 #include "Graphics/Sprite.h"
 #include "stageMain2.h"
 #include "UI_DisItems.h"
-#include "UI_Clock.h"
 #include <Audio/AudioSource.h>
 #include <vector>
 
@@ -46,8 +45,6 @@ private:
 
 	Effect* maru = nullptr;
 	Effect* batu = nullptr;
-
-	Clock* clock = nullptr;
 
 	Sprite* aka = nullptr;
 
